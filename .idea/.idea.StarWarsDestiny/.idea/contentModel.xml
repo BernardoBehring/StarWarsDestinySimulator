@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Projetos\StarWarsDestinySimulator" t="IncludeFlat">
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="StarWarsDestiny" t="IncludeRecursive">
+        <e p="Affiliation.cs" t="Include" />
+        <e p="Artist.cs" t="Include" />
+        <e p="Audit.cs" t="Include" />
+        <e p="BalanceForce.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Card.cs" t="Include" />
+        <e p="CharacterAtributes.cs" t="Include" />
+        <e p="CharacterCard.cs" t="Include" />
+        <e p="Color.cs" t="Include" />
+        <e p="DiceAction.cs" t="Include" />
+        <e p="DiceFace.cs" t="Include" />
+        <e p="Die.cs" t="Include" />
+        <e p="EntityId.cs" t="Include" />
+        <e p="Keyword.cs" t="Include" />
+        <e p="Legality.cs" t="Include" />
+        <e p="NonCharacterCard.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="StarWarsDestiny.Model.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Rarity.cs" t="Include" />
+        <e p="Set.cs" t="Include" />
+        <e p="StarWarsDestiny.Model.csproj" t="IncludeRecursive" />
+        <e p="Type.cs" t="Include" />
+      </e>
+      <e p="StarWarsDestiny.CardCrawler" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="StarWarsDestiny.CardCrawler.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="StarWarsDestiny.CardCrawler.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="StarWarsDestiny.Crawler.Repository" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Impl" t="Include">
+          <e p="RequestRepository.cs" t="Include" />
+          <e p="RobotRepository.cs" t="Include" />
+          <e p="SiteRepository.cs" t="Include" />
+          <e p="StausRepository.cs" t="Include" />
+        </e>
+        <e p="Interfaces" t="Include">
+          <e p="IRequestRepository.cs" t="Include" />
+          <e p="IRobotRepository.cs" t="Include" />
+          <e p="ISiteRepository.cs" t="Include" />
+          <e p="IStausRepository.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="StarWarsDestiny.Crawler.Repository.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="StarWarsDestiny.Crawler.Repository.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="StarWarsDestiny.Crawler.Service" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Impl" t="Include">
+          <e p="RequestService.cs" t="Include" />
+          <e p="RobotService.cs" t="Include" />
+          <e p="SiteService.cs" t="Include" />
+          <e p="StatusService.cs" t="Include" />
+        </e>
+        <e p="Interfaces" t="Include">
+          <e p="IRequestService.cs" t="Include" />
+          <e p="IRobotService.cs" t="Include" />
+          <e p="ISiteService.cs" t="Include" />
+          <e p="IStatusService.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="StarWarsDestiny.Crawler.Service.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="StarWarsDestiny.Crawler.Service.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="StarWarsDestiny.CrawlerBase" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controller" t="Include">
+          <e p="BaseController.cs" t="Include" />
+        </e>
+        <e p="Executer" t="Include">
+          <e p="BaseExecutor.cs" t="Include" />
+        </e>
+        <e p="Extractor" t="Include">
+          <e p="BaseExtractor.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="StarWarsDestiny.CrawlerBase.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="StarWarsDestiny.CrawlerBase.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="StarWarsDestiny.CrawlerModel" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Enum" t="Include">
+          <e p="EnumRobotType.cs" t="Include" />
+          <e p="EnumSite.cs" t="Include" />
+          <e p="EnumStatus.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="StarWarsDestiny.CrawlerModel.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Request.cs" t="Include" />
+        <e p="Robot.cs" t="Include" />
+        <e p="RobotType.cs" t="Include" />
+        <e p="Site.cs" t="Include" />
+        <e p="StarWarsDestiny.CrawlerModel.csproj" t="IncludeRecursive" />
+        <e p="Status.cs" t="Include" />
+      </e>
+      <e p="StarWarsDestiny.sln" t="IncludeFlat" />
+    </e>
+    <e p="C:\Users\bernardo.behring\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\bernardo.behring\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_StarWarsDestiny.-2128113175.00" t="ExcludeRecursive" />
+  </component>
+</project>
