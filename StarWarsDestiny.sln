@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Model", "StarWarsDestiny\StarWarsDestiny.Model.csproj", "{06CD4215-7473-4157-9E4F-56617524A261}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.CardCrawler", "StarWarsDestiny.CardCrawler\StarWarsDestiny.CardCrawler.csproj", "{CC75C14C-213A-4FEB-A689-483F1D02EF75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.CrawlerBase", "StarWarsDestiny.CrawlerBase\StarWarsDestiny.CrawlerBase.csproj", "{A31D42CF-B9A1-462F-9FBC-9E932D3ABB97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.CrawlerModel", "StarWarsDestiny.CrawlerModel\StarWarsDestiny.CrawlerModel.csproj", "{5047840B-1B2C-46CD-8466-ED0884D68C0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Crawler.Repository", "StarWarsDestiny.Crawler.Repository\StarWarsDestiny.Crawler.Repository.csproj", "{7CF4F4C5-74B3-4E2C-BB85-E343CB9AC442}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Crawler.Service", "StarWarsDestiny.Crawler.Service\StarWarsDestiny.Crawler.Service.csproj", "{BDC83545-53CA-473C-B638-D66DCF158054}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06CD4215-7473-4157-9E4F-56617524A261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06CD4215-7473-4157-9E4F-56617524A261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06CD4215-7473-4157-9E4F-56617524A261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06CD4215-7473-4157-9E4F-56617524A261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC75C14C-213A-4FEB-A689-483F1D02EF75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC75C14C-213A-4FEB-A689-483F1D02EF75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC75C14C-213A-4FEB-A689-483F1D02EF75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC75C14C-213A-4FEB-A689-483F1D02EF75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A31D42CF-B9A1-462F-9FBC-9E932D3ABB97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A31D42CF-B9A1-462F-9FBC-9E932D3ABB97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A31D42CF-B9A1-462F-9FBC-9E932D3ABB97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A31D42CF-B9A1-462F-9FBC-9E932D3ABB97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5047840B-1B2C-46CD-8466-ED0884D68C0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5047840B-1B2C-46CD-8466-ED0884D68C0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5047840B-1B2C-46CD-8466-ED0884D68C0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5047840B-1B2C-46CD-8466-ED0884D68C0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CF4F4C5-74B3-4E2C-BB85-E343CB9AC442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CF4F4C5-74B3-4E2C-BB85-E343CB9AC442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CF4F4C5-74B3-4E2C-BB85-E343CB9AC442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CF4F4C5-74B3-4E2C-BB85-E343CB9AC442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDC83545-53CA-473C-B638-D66DCF158054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC83545-53CA-473C-B638-D66DCF158054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC83545-53CA-473C-B638-D66DCF158054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC83545-53CA-473C-B638-D66DCF158054}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {07A7EF35-3E46-46A8-9650-C9F774A95647}
+	EndGlobalSection
+EndGlobal
