@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace StarWarsDestiny.CrawlerBase.Extractor
+﻿namespace StarWarsDestiny.Crawler.Base.Extractor
 {
-    class BaseExtractor
+    public class BaseExtractor
     {
     }
 }

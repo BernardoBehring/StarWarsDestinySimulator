@@ -1,11 +1,14 @@
 ﻿using StarWarsDestiny.Crawler.Service.Interfaces;
-using StarWarsDestiny.CrawlerBase.Executer;
-using StarWarsDestiny.CrawlerModel;
-using StarWarsDestiny.CrawlerModel.Enum;
+using StarWarsDestiny.Crawler.Base.Executer;
+using StarWarsDestiny.Crawler.Model;
+using StarWarsDestiny.Crawler.Model.Enum;
 using System;
 using System.Threading;
+using StarWarsDestiny.Model;
+using System.Threading.Tasks;
+using StarWarsDestiny.Common.Util;
 
-namespace StarWarsDestiny.CrawlerBase.Controller
+namespace StarWarsDestiny.Crawler.Base.Controller
 {
     public class BaseController
     {
@@ -29,7 +32,7 @@ namespace StarWarsDestiny.CrawlerBase.Controller
             _siteService = siteService;
         }
 
-        public long GetNext()
+        public int GetNext()
         {
             return _requestService.GetNext(Robot, Site, Status);
         }
@@ -41,11 +44,11 @@ namespace StarWarsDestiny.CrawlerBase.Controller
             Thread.Sleep(TimeSpan.FromMinutes(3));
         }
 
-        public long GetRequest(EnumStatus status)
+        public async Task<int> GetRequestAsync(EnumStatus status)
         {
-            long requestId = -1;
+            int requestId = -1;
 
-            Status = _statusService.Find((int)status);
+            Status = await _statusService.GetByIdAsync(((int)status).ToEntityId());
 
             requestId = _requestService.GetNext(Robot, Site, Status);
 

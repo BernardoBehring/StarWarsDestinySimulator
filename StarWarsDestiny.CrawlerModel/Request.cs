@@ -1,10 +1,10 @@
-﻿using System;
+﻿using StarWarsDestiny.Model;
+using System;
 
-namespace StarWarsDestiny.CrawlerModel
+namespace StarWarsDestiny.Crawler.Model
 {
-    public class Request
+    public class Request : EntityId
     {
-        public long Id { get; set; }
         public int StatusId { get; set; }
         public int RobotId { get; set; }
         public DateTime RegisterDate { get; set; }

@@ -1,4 +1,4 @@
-﻿namespace StarWarsDestiny.CrawlerModel.Enum
+﻿namespace StarWarsDestiny.Crawler.Model.Enum
 {
     public enum EnumRobotType
     {

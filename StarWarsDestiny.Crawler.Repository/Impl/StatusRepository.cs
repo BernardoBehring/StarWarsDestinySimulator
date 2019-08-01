@@ -5,7 +5,7 @@ using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Crawler.Repository.Impl
 {
-    public class SiteRepository : ReadWriteRepository<Site, EntityId>, ISiteRepository
+    public class StatusRepository : ReadWriteRepository<Status, EntityId>, IStausRepository
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace StarWarsDestiny.CrawlerModel
+namespace StarWarsDestiny.Crawler.Model
 {
     public class RobotType
     {

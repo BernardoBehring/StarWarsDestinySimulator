@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using StarWarsDestiny.Model;
 
-namespace StarWarsDestiny.CrawlerModel
+namespace StarWarsDestiny.Crawler.Model
 {
-    public class Status
+    public class Status : EntityId
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<Request> Requests { get; set; }
     }

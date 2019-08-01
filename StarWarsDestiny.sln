@@ -3,17 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Model", "StarWarsDestiny\StarWarsDestiny.Model.csproj", "{06CD4215-7473-4157-9E4F-56617524A261}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsDestiny.Model", "StarWarsDestiny\StarWarsDestiny.Model.csproj", "{06CD4215-7473-4157-9E4F-56617524A261}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.CardCrawler", "StarWarsDestiny.CardCrawler\StarWarsDestiny.CardCrawler.csproj", "{CC75C14C-213A-4FEB-A689-483F1D02EF75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsDestiny.Crawler.Card", "StarWarsDestiny.CardCrawler\StarWarsDestiny.Crawler.Card.csproj", "{CC75C14C-213A-4FEB-A689-483F1D02EF75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.CrawlerBase", "StarWarsDestiny.CrawlerBase\StarWarsDestiny.CrawlerBase.csproj", "{A31D42CF-B9A1-462F-9FBC-9E932D3ABB97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsDestiny.Crawler.Base", "StarWarsDestiny.CrawlerBase\StarWarsDestiny.Crawler.Base.csproj", "{A31D42CF-B9A1-462F-9FBC-9E932D3ABB97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.CrawlerModel", "StarWarsDestiny.CrawlerModel\StarWarsDestiny.CrawlerModel.csproj", "{5047840B-1B2C-46CD-8466-ED0884D68C0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsDestiny.Crawler.Model", "StarWarsDestiny.CrawlerModel\StarWarsDestiny.Crawler.Model.csproj", "{5047840B-1B2C-46CD-8466-ED0884D68C0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Crawler.Repository", "StarWarsDestiny.Crawler.Repository\StarWarsDestiny.Crawler.Repository.csproj", "{7CF4F4C5-74B3-4E2C-BB85-E343CB9AC442}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsDestiny.Crawler.Repository", "StarWarsDestiny.Crawler.Repository\StarWarsDestiny.Crawler.Repository.csproj", "{7CF4F4C5-74B3-4E2C-BB85-E343CB9AC442}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Crawler.Service", "StarWarsDestiny.Crawler.Service\StarWarsDestiny.Crawler.Service.csproj", "{BDC83545-53CA-473C-B638-D66DCF158054}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsDestiny.Crawler.Service", "StarWarsDestiny.Crawler.Service\StarWarsDestiny.Crawler.Service.csproj", "{BDC83545-53CA-473C-B638-D66DCF158054}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crawler", "Crawler", "{9F3961B3-B3E3-4FE6-A031-DA4B2BAC6539}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FC98083B-09A2-46D0-AE12-52132C414388}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Common.Model", "StarWarsDestiny.Common.Model\StarWarsDestiny.Common.Model.csproj", "{02B56E51-19FE-418B-ACD2-83A67CA7CC2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Common.Repository", "StarWarsDestiny.Common.Repository\StarWarsDestiny.Common.Repository.csproj", "{D2D2334C-0C08-4AD9-8339-ABE6404A05BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Common.Service", "StarWarsDestiny.Common.Service\StarWarsDestiny.Common.Service.csproj", "{E493FFCB-FF7B-4A0B-AD86-3DB47D4FB12D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Common.Util", "StarWarsDestiny.Common.Util\StarWarsDestiny.Common.Util.csproj", "{4B34CDCF-2C3A-491D-ABE9-3666CCDBB362}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +57,36 @@ Global
 		{BDC83545-53CA-473C-B638-D66DCF158054}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDC83545-53CA-473C-B638-D66DCF158054}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDC83545-53CA-473C-B638-D66DCF158054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02B56E51-19FE-418B-ACD2-83A67CA7CC2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02B56E51-19FE-418B-ACD2-83A67CA7CC2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02B56E51-19FE-418B-ACD2-83A67CA7CC2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02B56E51-19FE-418B-ACD2-83A67CA7CC2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2D2334C-0C08-4AD9-8339-ABE6404A05BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D2334C-0C08-4AD9-8339-ABE6404A05BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D2334C-0C08-4AD9-8339-ABE6404A05BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D2334C-0C08-4AD9-8339-ABE6404A05BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E493FFCB-FF7B-4A0B-AD86-3DB47D4FB12D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E493FFCB-FF7B-4A0B-AD86-3DB47D4FB12D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E493FFCB-FF7B-4A0B-AD86-3DB47D4FB12D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E493FFCB-FF7B-4A0B-AD86-3DB47D4FB12D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B34CDCF-2C3A-491D-ABE9-3666CCDBB362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B34CDCF-2C3A-491D-ABE9-3666CCDBB362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B34CDCF-2C3A-491D-ABE9-3666CCDBB362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B34CDCF-2C3A-491D-ABE9-3666CCDBB362}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CC75C14C-213A-4FEB-A689-483F1D02EF75} = {9F3961B3-B3E3-4FE6-A031-DA4B2BAC6539}
+		{A31D42CF-B9A1-462F-9FBC-9E932D3ABB97} = {9F3961B3-B3E3-4FE6-A031-DA4B2BAC6539}
+		{5047840B-1B2C-46CD-8466-ED0884D68C0A} = {9F3961B3-B3E3-4FE6-A031-DA4B2BAC6539}
+		{7CF4F4C5-74B3-4E2C-BB85-E343CB9AC442} = {9F3961B3-B3E3-4FE6-A031-DA4B2BAC6539}
+		{BDC83545-53CA-473C-B638-D66DCF158054} = {9F3961B3-B3E3-4FE6-A031-DA4B2BAC6539}
+		{02B56E51-19FE-418B-ACD2-83A67CA7CC2D} = {FC98083B-09A2-46D0-AE12-52132C414388}
+		{D2D2334C-0C08-4AD9-8339-ABE6404A05BA} = {FC98083B-09A2-46D0-AE12-52132C414388}
+		{E493FFCB-FF7B-4A0B-AD86-3DB47D4FB12D} = {FC98083B-09A2-46D0-AE12-52132C414388}
+		{4B34CDCF-2C3A-491D-ABE9-3666CCDBB362} = {FC98083B-09A2-46D0-AE12-52132C414388}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07A7EF35-3E46-46A8-9650-C9F774A95647}

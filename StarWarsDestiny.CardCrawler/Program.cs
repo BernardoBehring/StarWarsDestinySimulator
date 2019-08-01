@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace StarWarsDestiny.CardCrawler
+namespace StarWarsDestiny.Crawler.Card
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
