@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StarWarsDestiny.Common.Util\StarWarsDestiny.Common.Util.csproj" />
     <ProjectReference Include="..\StarWarsDestiny.Crawler.Service\StarWarsDestiny.Crawler.Service.csproj" />
     <ProjectReference Include="..\StarWarsDestiny.CrawlerModel\StarWarsDestiny.Crawler.Model.csproj" />
   </ItemGroup>

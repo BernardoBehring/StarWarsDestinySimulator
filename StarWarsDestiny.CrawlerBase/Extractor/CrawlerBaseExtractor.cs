@@ -1,6 +1,6 @@
 ﻿namespace StarWarsDestiny.Crawler.Base.Extractor
 {
-    public class BaseExtractor
+    public class CrawlerBaseExtractor
     {
     }
 }
