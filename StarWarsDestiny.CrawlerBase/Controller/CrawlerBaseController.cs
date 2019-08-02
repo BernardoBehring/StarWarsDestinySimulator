@@ -73,7 +73,7 @@ namespace StarWarsDestiny.Crawler.Base.Controller
 
         protected virtual Task SetStartVariablesAsync()
         {
-            return Task.Run(a => { return -1 });
+            return Task.Run(a => { return -1});
         }
 
         public async Task ExecuteAsync(EnumStatus status)
