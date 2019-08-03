@@ -1,7 +1,10 @@
-﻿namespace StarWarsDestiny.Model
+﻿using System.Collections.Generic;
+
+namespace StarWarsDestiny.Model
 {
     public class Faction : EntityId
     {
         public string Name { get; set; }
+        public ICollection<Card> Cards { get; set; }
     }
 }

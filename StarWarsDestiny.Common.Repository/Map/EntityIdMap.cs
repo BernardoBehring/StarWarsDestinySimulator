@@ -9,9 +9,9 @@ namespace StarWarsDestiny.Common.Repository.Map
         public void Configure(EntityTypeBuilder<T> builder)
         {
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.InsertedIn);
-            builder.Property(x => x.UpdatedIn);
-            builder.Property(x => x.DeletedIn);
+            builder.Property(x => x.InsertedIn).IsRequired().HasColumnType("datetime");
+            builder.Property(x => x.UpdatedIn).HasColumnType("datetime");
+            builder.Property(x => x.DeletedIn).HasColumnType("datetime");
         }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace StarWarsDestiny.Model
 {
-    public class Legality : EntityId
+    public class SetStarWars : EntityId
     {
         public string Name { get; set; }
-        public ICollection<BalanceForce> BalanceForces { get; set; }
+        public ICollection<Card> Cards { get; set; }
     }
 }

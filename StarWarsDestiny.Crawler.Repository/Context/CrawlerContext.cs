@@ -10,6 +10,9 @@ namespace StarWarsDestiny.Crawler.Repository.Context
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder) =>
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(CrawlerContext).Assembly);
+
         public DbSet<Request> Requests { get; set; }
         public DbSet<Robot> Robots { get; set; }
         public DbSet<RobotType> RobotTypes { get; set; }

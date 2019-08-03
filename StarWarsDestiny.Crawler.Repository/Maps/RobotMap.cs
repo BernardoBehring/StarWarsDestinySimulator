@@ -1,14 +1,32 @@
-﻿namespace StarWarsDestiny.Crawler.Repository.Maps
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using StarWarsDestiny.Common.Repository.Map;
+using StarWarsDestiny.Crawler.Model;
+
+namespace StarWarsDestiny.Crawler.Repository.Maps
 {
-    public class RobotMap : EntityIdMap<Request>, IEntityTypeConfiguration<Request>
+    public class RobotMap : EntityIdMap<Robot>, IEntityTypeConfiguration<Robot>
     {
-        public new void Configure(EntityTypeBuilder<Request> builder)
+        public new void Configure(EntityTypeBuilder<Robot> builder)
         {
             base.Configure(builder);
-            //builder.ToTable("Site");
-            builder.Property(x => x.Name);
-            builder.Property(x => x.Url);
-            builder.HasMany(x => x.Robots).WithOne(x => x.Site).HasForeignKey(x => x.);
+            builder.ToTable("Robot");
+            builder.Property(x => x.Name)
+                .IsRequired()
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            builder.Property(x => x.RobotTypeId);
+            builder.Property(x => x.SiteId);
+
+            builder.HasOne(d => d.RobotType)
+                .WithMany(p => p.Robots)
+                .HasForeignKey(d => d.RobotTypeId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder.HasOne(d => d.Site)
+                .WithMany(p => p.Robots)
+                .HasForeignKey(d => d.SiteId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

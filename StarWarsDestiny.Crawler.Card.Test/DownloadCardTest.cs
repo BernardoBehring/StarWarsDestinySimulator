@@ -71,7 +71,7 @@ namespace StarWarsDestiny.Crawler.Card.Test
                 case "Die":
                     GetDieFace(card, td, ref die, innerText);
                     break;
-                case "Set":
+                case "SetStarWars":
                     GetCardSet(td, card);
                     break;
                 default:
@@ -90,11 +90,11 @@ namespace StarWarsDestiny.Crawler.Card.Test
         {
             var span = td.SelectSingleNode("./span[@class='hidden-xs']");
 
-            if (card.Set == null)
-                card.Set = new Set();
+            if (card.SetStarWars == null)
+                card.SetStarWars = new SetStarWars();
 
             var setName = span.InnerText.FormatText();
-            card.Set.Name = setName;
+            card.SetStarWars.Name = setName;
             card.Number = Convert.ToInt32(td.InnerText.FormatText().Replace(setName, ""));
         }
 

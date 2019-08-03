@@ -5,7 +5,9 @@ namespace StarWarsDestiny.Model
 {
     public class Die : EntityId
     {
+        public int CardId { get; set; }
         public Card Card { get; set; }
         public ICollection<DiceFace> Faces { get; set; }
+        public ICollection<DiceFace> DiceFaces { get; set; }
     }
 }

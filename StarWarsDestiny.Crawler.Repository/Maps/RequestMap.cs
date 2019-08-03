@@ -10,10 +10,22 @@ namespace StarWarsDestiny.Crawler.Repository.Maps
         public new void Configure(EntityTypeBuilder<Request> builder)
         {
             base.Configure(builder);
-            //builder.ToTable("Site");
-            builder.Property(x => x.Name);
-            builder.Property(x => x.Url);
-            builder.HasMany(x => x.Robots).WithOne(x => x.Site).HasForeignKey(x => x.);
+            builder.ToTable("Request");
+            builder.Property(x => x.StatusId);
+            builder.Property(x => x.RobotId);
+            builder.Property(x => x.RegisterDate).HasColumnType("datetime");
+            builder.Property(x => x.StartDateExecution).HasColumnType("datetime");
+            builder.Property(x => x.EndDateExecution).HasColumnType("datetime");
+            builder.Property(x => x.Response);
+            builder.Property(x => x.AttemptQty);
+            
+            builder.HasOne(d => d.Robot)
+                .WithMany(p => p.Requests)
+                .HasForeignKey(d => d.RobotId);
+
+            builder.HasOne(d => d.Status)
+                .WithMany(p => p.Requests)
+                .HasForeignKey(d => d.StatusId);
         }
     }
 }

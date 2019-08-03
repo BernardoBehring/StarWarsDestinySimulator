@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using StarWarsDestiny.Common.Repository.Map;
-using StarWarsDestiny.Crawler.Model;
+using StarWarsDestiny.Model;
 
-namespace StarWarsDestiny.Crawler.Repository.Maps
+namespace StarWarsDestiny.Repository.Maps
 {
-    public class RobotTypeMap : EntityIdMap<RobotType>, IEntityTypeConfiguration<RobotType>
+    public class FactionMap : EntityIdMap<Faction>, IEntityTypeConfiguration<Faction>
     {
-        public new void Configure(EntityTypeBuilder<RobotType> builder)
+        public new void Configure(EntityTypeBuilder<Faction> builder)
         {
             base.Configure(builder);
-            builder.ToTable("RobotType");
+            builder.ToTable("Faction");
+
             builder.Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(255)
