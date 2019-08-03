@@ -10,4 +10,9 @@
     <ProjectReference Include="..\StarWarsDestiny\StarWarsDestiny.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Impl\" />
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
-﻿using StarWarsDestiny.Common.Repository.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using StarWarsDestiny.Common.Repository.Interfaces;
 using StarWarsDestiny.Common.Service.Impl;
 using StarWarsDestiny.Model.Common;
 using System;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace StarWarsDestiny.Service.Impl
 {
-    public class ModelOnlyNameService<T> : ReadWriteService<T> where T : ModelOnlyName, new()
+    public class ModelOnlyNameService<T, TDbContext> : ReadWriteService<T, TDbContext> where T : ModelOnlyName, new() where TDbContext : DbContext
     {
-        private readonly IReadWriteRepository<T> _repository;
+        private readonly IReadWriteRepository<T, TDbContext> _repository;
 
-        public ModelOnlyNameService(IReadWriteRepository<T> repository) : base(repository)
+        public ModelOnlyNameService(IReadWriteRepository<T, TDbContext> repository) : base(repository)
         {
             _repository = repository;
         }

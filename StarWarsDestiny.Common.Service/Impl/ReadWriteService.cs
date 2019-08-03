@@ -7,12 +7,13 @@ using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Common.Service.Impl
 {
-    public class ReadWriteService<T> : ReadService<T>, IReadWriteService<T>
+    public class ReadWriteService<T, TDbContext> : ReadService<T, TDbContext>, IReadWriteService<T, TDbContext>
         where T : EntityId
+        where TDbContext : DbContext
     {
-        private readonly IReadWriteRepository<T> _repository;
+        private readonly IReadWriteRepository<T, TDbContext> _repository;
 
-        public ReadWriteService(IReadWriteRepository<T> repository) : base(repository)
+        public ReadWriteService(IReadWriteRepository<T, TDbContext> repository) : base(repository)
         {
             _repository = repository;
         }

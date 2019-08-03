@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using StarWarsDestiny.Common.Repository.Interfaces;
 using StarWarsDestiny.Common.Service.Interfaces;
 using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Common.Service.Impl
 {
-    public class ReadService<T> : IReadService<T> where T : EntityId
+    public class ReadService<T, TDbContext> : IReadService<T> where T : EntityId where TDbContext : DbContext
     {
-        private readonly IReadRepository<T> _repository;
+        private readonly IReadRepository<T, TDbContext> _repository;
 
-        public ReadService(IReadRepository<T> repository)
+        public ReadService(IReadRepository<T, TDbContext> repository)
         {
             _repository = repository;
         }

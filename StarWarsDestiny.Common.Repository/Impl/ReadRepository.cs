@@ -8,7 +8,7 @@ using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Common.Repository.Impl
 {
-    public class ReadRepository<T, TDbContext> : IReadRepository<T> where T : EntityId where TDbContext : DbContext
+    public class ReadRepository<T, TDbContext> : IReadRepository<T, TDbContext> where T : EntityId where TDbContext : DbContext
     {
         private Repository<TDbContext> repository;
         public ReadRepository(TDbContext context)

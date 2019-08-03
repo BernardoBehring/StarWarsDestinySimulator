@@ -5,7 +5,7 @@ using StarWarsDestiny.Crawler.Repository.Interfaces;
 
 namespace StarWarsDestiny.Crawler.Repository.Impl
 {
-    public class StatusRepository : ReadWriteRepository<Status, CrawlerContext>, IStausRepository
+    public class StatusRepository : ReadWriteRepository<Status, CrawlerContext>, IStatusRepository
     {
         public StatusRepository(CrawlerContext context) : base(context)
         {

@@ -1,9 +1,10 @@
 ﻿using StarWarsDestiny.Common.Service.Interfaces;
 using StarWarsDestiny.Model;
+using StarWarsDestiny.Repository.Context;
 
 namespace StarWarsDestiny.Service.Interfaces
 {
-    public interface ISetStarWarsService : IReadWriteService<SetStarWars>, IModelOnlyNameService
+    public interface ISetStarWarsService : IReadWriteService<SetStarWars, StarWarsDestinyContext>, IModelOnlyNameService
     {
     }
 }

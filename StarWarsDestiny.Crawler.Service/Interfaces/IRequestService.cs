@@ -1,11 +1,12 @@
 ﻿using StarWarsDestiny.Common.Service.Interfaces;
 using StarWarsDestiny.Crawler.Model;
+using StarWarsDestiny.Crawler.Repository.Context;
 using StarWarsDestiny.Model;
 using System.Threading.Tasks;
 
 namespace StarWarsDestiny.Crawler.Service.Interfaces
 {
-    public interface IRequestService : IReadWriteService<Request>
+    public interface IRequestService : IReadWriteService<Request, CrawlerContext>
     {
         Task<Request> LogBeginRequestAsync(EntityId id);
         Task<Request> GetNextAsync(Robot robo, Site site, Status status);
