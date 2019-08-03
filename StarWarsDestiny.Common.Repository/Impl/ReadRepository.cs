@@ -1,25 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using StarWarsDestiny.Common.Repository.Interfaces;
+using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Common.Repository.Impl
 {
-    public class ReadRepository<T, TId> : IReadRepository<T, TId> where T : TId
+    public class ReadRepository<T, TDbContext> : IReadRepository<T> where T : EntityId where TDbContext : DbContext
     {
-        public Task<IEnumerable<T>> GetAllAsync()
+        private Repository<TDbContext> repository;
+        public ReadRepository(TDbContext context)
         {
-            throw new NotImplementedException();
+            repository = new Repository<TDbContext>(context);
         }
 
-        public Task<IEnumerable<T>> GetAllWithParametersAsync(Func<T, bool> filter)
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var query = repository.GetQueryable<T>();
+
+            return await query.ToListAsync();
         }
 
-        public Task<T> GetByIdAsync(TId id)
+        public async Task<IEnumerable<T>> GetAllWithParametersAsync(Func<T, bool> filter)
         {
-            throw new NotImplementedException();
+            var query = repository.GetQueryable<T>();
+
+            if(filter != null)
+                query = query.Where(filter).AsQueryable();
+
+            return await query.ToListAsync();
+        }
+
+        public async Task<T> GetByIdAsync(EntityId id)
+        {
+            var query = repository.GetQueryable<T>();
+            query = query.Where(a => a.Id == id.Id);
+
+            return await query.FirstOrDefaultAsync();
         }
     }
 }

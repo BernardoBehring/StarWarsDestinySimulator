@@ -1,18 +1,34 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using StarWarsDestiny.Common.Repository.Interfaces;
+using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Common.Repository.Impl
 {
-    public class ReadWriteRepository<T, TId> : ReadRepository<T, TId>, IReadWriteRepository<T, TId> where T : TId
+    public class ReadWriteRepository<T, TDbContext> : ReadRepository<T, TDbContext>, IReadWriteRepository<T>
+        where T : EntityId where TDbContext : DbContext
     {
-        public Task<T> CreateAsync(T model)
+        private Repository<TDbContext> repository;
+        public ReadWriteRepository(TDbContext context) : base(context)
         {
-            throw new System.NotImplementedException();
+            repository = new Repository<TDbContext>(context);
         }
 
-        public Task<T> DeleteAsync(TId id)
+        public async Task<T> CreateAsync(T model)
         {
-            throw new System.NotImplementedException();
+            await repository.AddAsync(model);
+            return model;
+        }
+
+        public async Task DeleteAsync(EntityId id)
+        {
+            await repository.DeleteAsync(id);
+        }
+
+        public async Task<T> UpdateAsync(T model)
+        {
+            await repository.UpdateAsync(model);
+            return model;
         }
 
         public Task<T> PartialUpdateAsync(T model, string[] properties)

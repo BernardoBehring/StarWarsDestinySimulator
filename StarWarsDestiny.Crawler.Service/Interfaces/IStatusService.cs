@@ -4,7 +4,7 @@ using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Crawler.Service.Interfaces
 {
-    public interface IStatusService : IReadWriteService<Status, EntityId>
+    public interface IStatusService : IReadWriteService<Status>
     {
     }
 }

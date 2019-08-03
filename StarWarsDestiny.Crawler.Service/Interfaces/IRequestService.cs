@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StarWarsDestiny.Crawler.Service.Interfaces
 {
-    public interface IRequestService : IReadWriteService<Request, EntityId>
+    public interface IRequestService : IReadWriteService<Request>
     {
         Task<Request> LogBeginRequestAsync(EntityId id);
         Task<Request> GetNextAsync(Robot robo, Site site, Status status);

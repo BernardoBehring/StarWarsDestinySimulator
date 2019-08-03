@@ -1,6 +1,14 @@
 ﻿namespace StarWarsDestiny.Crawler.Repository.Maps
 {
-    public class RobotMap
+    public class RobotMap : EntityIdMap<Request>, IEntityTypeConfiguration<Request>
     {
+        public new void Configure(EntityTypeBuilder<Request> builder)
+        {
+            base.Configure(builder);
+            //builder.ToTable("Site");
+            builder.Property(x => x.Name);
+            builder.Property(x => x.Url);
+            builder.HasMany(x => x.Robots).WithOne(x => x.Site).HasForeignKey(x => x.);
+        }
     }
 }

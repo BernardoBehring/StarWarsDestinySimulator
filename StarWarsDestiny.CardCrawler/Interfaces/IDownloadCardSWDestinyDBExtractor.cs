@@ -1,6 +1,8 @@
-﻿namespace StarWarsDestiny.Crawler.Card.Interfaces
+﻿using StarWarsDestiny.Crawler.Base.Interfaces;
+
+namespace StarWarsDestiny.Crawler.Card.Interfaces
 {
-    public interface IDownloadCardSWDestinyDBExtractor
+    public interface IDownloadCardSWDestinyDBExtractor : ICrawlerBaseExtractor
     {
     }
 }

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using StarWarsDestiny.Common.Repository.Interfaces;
 using StarWarsDestiny.Common.Service.Interfaces;
+using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Common.Service.Impl
 {
-    public class ReadService<T, TId> : IReadService<T, TId> where T : TId
+    public class ReadService<T> : IReadService<T> where T : EntityId
     {
-        private readonly IReadRepository<T, TId> _repository;
+        private readonly IReadRepository<T> _repository;
 
-        public ReadService(IReadRepository<T, TId> repository)
+        public ReadService(IReadRepository<T> repository)
         {
             _repository = repository;
         }
@@ -24,7 +25,7 @@ namespace StarWarsDestiny.Common.Service.Impl
             return await _repository.GetAllWithParametersAsync(filter);
         }
 
-        public async Task<T> GetByIdAsync(TId id)
+        public async Task<T> GetByIdAsync(EntityId id)
         {
             return await _repository.GetByIdAsync(id);
         }

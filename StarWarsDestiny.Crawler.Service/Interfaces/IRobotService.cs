@@ -4,7 +4,7 @@ using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Crawler.Service.Interfaces
 {
-    public interface IRobotService : IReadWriteService<Robot, EntityId>
+    public interface IRobotService : IReadWriteService<Robot>
     {
     }
 }
