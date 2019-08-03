@@ -18,14 +18,14 @@ namespace StarWarsDestiny.Repository.Maps
             builder.Property(e => e.LegalityId)
                 .IsRequired();
 
-            builder.Property(e => e.CharacterAtributes.Health)
+            builder.Property(e => e.Health)
                 .HasColumnName("Health")
                 .IsRequired();
 
-            builder.Property(e => e.CharacterAtributes.ElitePoints)
+            builder.Property(e => e.ElitePoints)
                 .HasColumnName("ElitePoints");
 
-            builder.Property(e => e.CharacterAtributes.Points)
+            builder.Property(e => e.Points)
                 .HasColumnName("Points");
 
             builder.HasOne(d => d.Card)

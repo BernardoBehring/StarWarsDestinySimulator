@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using StarWarsDestiny.Common.Repository.Interfaces;
 using StarWarsDestiny.Model;
@@ -18,6 +19,12 @@ namespace StarWarsDestiny.Common.Repository.Impl
         {
             await repository.AddAsync(model);
             return model;
+        }
+
+        public async Task<IEnumerable<T>> CreateAsync(IEnumerable<T> models)
+        {
+            await repository.AddRangeAsync(models);
+            return models;
         }
 
         public async Task DeleteAsync(EntityId id)

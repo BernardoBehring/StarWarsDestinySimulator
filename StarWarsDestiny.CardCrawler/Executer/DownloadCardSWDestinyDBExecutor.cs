@@ -14,9 +14,11 @@ namespace StarWarsDestiny.Crawler.Card.Executer
             _extractor = extractor;
         }
         
-        public Task Execute()
+        public async Task ExecuteAsync()
         {
-            throw new System.NotImplementedException();
+            var page = webClient.DownloadString("https://swdestinydb.com/find?q=a&sort=name&view=list");
+
+            await _extractor.ProcessPageAsync(page);
         }
     }
 }

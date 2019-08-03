@@ -47,7 +47,12 @@ create table Card
 	DieId int,
 	SetStarWarsId int not null,
 	Url varchar(500) not null,
-	DataCode varchar(255) not null
+	DataCode varchar(255) not null,
+	Cost int null,
+	Points int null,
+	ElitePoints int null,
+	Health int null,
+	IsCharacter bit not null
 )
 
 create table CardType
@@ -58,20 +63,6 @@ create table CardType
 	DeletedIn datetime,
 	CardId int not null,
 	TypeId int not null
-)
-
-create table CharacterCard
-(
-	CardId int primary key,
-	Points int not null,
-	ElitePoints int,
-	Health int not null
-)
-
-create table NonCharacterCard
-(
-	CardId int primary key,
-	Cost int not null
 )
 
 create table Color

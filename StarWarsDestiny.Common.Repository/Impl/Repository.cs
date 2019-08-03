@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +24,7 @@ namespace StarWarsDestiny.Common.Repository.Impl
             await DbContext.Set<T>().AddAsync(model);
             await DbContext.SaveChangesAsync();
         }
-
+        
         public async Task UpdateAsync<T>(T model) where T : class
         {
             DbContext.Set<T>().Update(model);
@@ -36,6 +37,12 @@ namespace StarWarsDestiny.Common.Repository.Impl
                 return;
 
             DbContext.Set<T>().Remove(model);
+            await DbContext.SaveChangesAsync();
+        }
+
+        public async Task AddRangeAsync<T>(IEnumerable<T> models) where T : class
+        {
+            await DbContext.Set<T>().AddRangeAsync(models);
             await DbContext.SaveChangesAsync();
         }
     }

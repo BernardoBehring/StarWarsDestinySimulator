@@ -89,7 +89,7 @@ namespace StarWarsDestiny.Crawler.Base.Controller
                     requestId = request.Id;
                     await LogBeginRequestAsync(requestId);
 
-                    await _executor.Execute();
+                    await _executor.ExecuteAsync();
 
                     await LogSuccessfullyConcludedAsync(requestId);
                 }

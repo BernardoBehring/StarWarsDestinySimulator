@@ -6,6 +6,6 @@ namespace StarWarsDestiny.Crawler.Base.Interfaces
     public interface ICrawlerBaseExecutor
     {
         WebClient webClient { get; set; }
-        Task Execute();
+        Task ExecuteAsync();
     }
 }

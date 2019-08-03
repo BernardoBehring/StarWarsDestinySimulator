@@ -40,10 +40,18 @@ namespace StarWarsDestiny.Repository.Maps
                 .IsUnicode(false);
 
             builder.Property(e => e.DataCode)
-                 .IsRequired()
-                 .HasMaxLength(255)
-                 .IsUnicode(false);
-            
+                .IsRequired()
+                .HasMaxLength(255)
+                .IsUnicode(false);
+
+            builder.Property(e => e.Points);
+
+            builder.Property(e => e.ElitePoints);
+
+            builder.Property(e => e.Health);
+
+            builder.Property(e => e.Cost);
+
             builder.HasOne(d => d.Affiliation)
                 .WithMany(p => p.Cards)
                 .HasForeignKey(d => d.AffiliationId)

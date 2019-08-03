@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using StarWarsDestiny.Model.Enum;
 using CardSWD = StarWarsDestiny.Model.Card;
-using Type = StarWarsDestiny.Model.Type;
 
 namespace StarWarsDestiny.Crawler.Card.Extractor
 {
@@ -21,10 +20,11 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
         private readonly IFactionService _factionService;
         private readonly IAffiliationService _affiliationService;
         private readonly IDiceActionService _diceActionService;
+        private readonly ICardService _cardService;
 
         public DownloadCardSWDestinyDBExtractor(IRarityService rarityService, ISetStarWarsService setStarWarsService,
             IColorService colorService, ITypeService typeService, IFactionService factionService, IAffiliationService affiliationService,
-            IDiceActionService diceActionService)
+            IDiceActionService diceActionService, ICardService cardService)
         {
             _rarityService = rarityService;
             _setStarWarsService = setStarWarsService;
@@ -33,6 +33,73 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
             _factionService = factionService;
             _affiliationService = affiliationService;
             _diceActionService = diceActionService;
+            _cardService = cardService;
+        }
+
+        public async Task ProcessPageAsync(string page)
+        {
+            var document = new HtmlDocument();
+            document.LoadHtml(page);
+
+            var table = document.DocumentNode.SelectSingleNode("//table[contains(@class, 'rwd-table')]");
+
+            var trs = table.SelectNodes("./tr");
+            var listCards = new List<CardSWD>();
+
+            foreach (var tr in trs)
+            {
+                var tds = tr.SelectNodes("./td");
+                var card = new CardSWD();
+
+                foreach (var td in tds)
+                {
+                    card = await GetCardAttributesAsync(td, card);
+                }
+
+                listCards.Add(card);
+            }
+
+            await _cardService.CreateAsync(listCards);
+        }
+
+        private async Task<CardSWD> GetCardAttributesAsync(HtmlNode td, CardSWD card)
+        {
+            var type = td.Attributes["data-th"].Value;
+            var innerText = td.InnerText.FormatText();
+            switch (type)
+            {
+                case "Name":
+                    card = await GetCardNameAndColorAsync(card, td);
+                    break;
+                case "Affiliation":
+                    card = await GetAffiliationAsync(card, innerText);
+                    break;
+                case "Faction":
+                    card = await GetFactionAsync(card, innerText);
+                    break;
+                case "Points/Cost":
+                    card = GetPointsCost(card, innerText);
+                    break;
+                case "Health":
+                    card = GetHealth(card, innerText);
+                    break;
+                case "Type":
+                    card = await GetCardTypeAsync(card, innerText);
+                    break;
+                case "Rarity":
+                    card = await GetRarityIdAsync(card, innerText);
+                    break;
+                case "Die":
+                    card = await GetDieFaceAsync(card, td, innerText);
+                    break;
+                case "SetStarWars":
+                    card = await GetCardSetAsync(card, td);
+                    break;
+                default:
+                    throw new Exception("TD NOT FOUND");
+            }
+
+            return card;
         }
 
         private async Task<CardSWD> GetRarityIdAsync(CardSWD card, string innerText)
@@ -52,20 +119,19 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
             return card;
         }
 
-        private async Task<CardSWD> GetCardNameAndColorAsync(HtmlNode td, CardSWD card)
+        private async Task<CardSWD> GetCardNameAndColorAsync(CardSWD card, HtmlNode td)
         {
             var span = td.SelectSingleNode("./span");
             var classSpan = span.Attributes["class"].Value;
-
-            if (classSpan.Contains("character"))
-                card = new CharacterCard();
-            else
-                card = new NonCharacterCard();
-
             var link = td.SelectSingleNode("./a");
             card.Name = link.InnerText.FormatText();
             card.Url = link.Attributes["href"].Value;
             card.DataCode = link.Attributes["data-code"].Value;
+
+            if (classSpan.Contains("character"))
+                card.IsCharacter = true;
+            else
+                card.IsCharacter = false;
 
             return await GetColorAsync(card, classSpan);
         }
@@ -120,12 +186,8 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
             var health = innerText;
             if (!string.IsNullOrWhiteSpace(health))
             {
-                var characterCard = (CharacterCard)card;
-                if (characterCard.CharacterAtributes == null)
-                    characterCard.CharacterAtributes = new CharacterAtributes();
-                characterCard.CharacterAtributes.Health = Convert.ToInt32(health);
+                card.Health = Convert.ToInt32(health);
             }
-
             return card;
         }
 
@@ -139,20 +201,16 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
         {
             var pointsCost = innerText;
             var pointsSplit = pointsCost.Split('/');
-            if (card is CharacterCard)
+            if (card.IsCharacter)
             {
-                var characterCard = (CharacterCard)card;
-                if (characterCard.CharacterAtributes == null)
-                    characterCard.CharacterAtributes = new CharacterAtributes();
                 if (pointsSplit.Length > 1)
-                    characterCard.CharacterAtributes.ElitePoints = Convert.ToInt32(pointsSplit[1]);
-                characterCard.CharacterAtributes.Points = Convert.ToInt32(pointsSplit[0]);
+                    card.ElitePoints = Convert.ToInt32(pointsSplit[1]);
+                card.Points = Convert.ToInt32(pointsSplit[0]);
             }
-            else if (card is NonCharacterCard)
+            else
             {
-                var nonCharacterCard = (NonCharacterCard)card;
                 if (!string.IsNullOrWhiteSpace(pointsCost))
-                    nonCharacterCard.Cost = Convert.ToInt32(pointsCost);
+                    card.Cost = Convert.ToInt32(pointsCost);
             }
 
             return card;

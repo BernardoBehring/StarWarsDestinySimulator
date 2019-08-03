@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using StarWarsDestiny.Model.Interfaces;
 
 namespace StarWarsDestiny.Model
 {
-    public class Card : EntityId
+    public class Card : EntityId, ICharacterAtributes, INonCharacterAtributes
     {
         public string Name { get; set; }
         public string Text { get; set; }
@@ -16,6 +17,11 @@ namespace StarWarsDestiny.Model
         public int SetStarWarsId { get; set; }
         public string Url { get; set; }
         public string DataCode { get; set; }
+        public int Points { get; set; }
+        public int? ElitePoints { get; set; }
+        public int Health { get; set; }
+        public int Cost { get; set; }
+        public bool IsCharacter { get; set; }
         public SetStarWars SetStarWars { get; set; }
         public Die Die { get; set; }
         public Rarity Rarity { get; set; }
