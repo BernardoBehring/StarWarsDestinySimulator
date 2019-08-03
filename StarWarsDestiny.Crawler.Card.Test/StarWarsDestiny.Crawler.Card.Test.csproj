@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StarWarsDestiny.Common.Util\StarWarsDestiny.Common.Util.csproj" />
     <ProjectReference Include="..\StarWarsDestiny\StarWarsDestiny.Model.csproj" />
   </ItemGroup>
 

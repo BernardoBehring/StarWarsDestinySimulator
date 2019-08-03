@@ -10,11 +10,11 @@ using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Crawler.Service.Impl
 {
-    public class RequestService : ReadWriteService<Request, EntityId>, IRequestService
+    public class RequestService : ReadWriteService<Request>, IRequestService
     {
-        private readonly IReadWriteRepository<Request, EntityId> _repository;
+        private readonly IReadWriteRepository<Request> _repository;
 
-        public RequestService(IReadWriteRepository<Request, EntityId> repository) : base(repository)
+        public RequestService(IReadWriteRepository<Request> repository) : base(repository)
         {
             _repository = repository;
         }

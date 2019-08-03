@@ -1,7 +1,10 @@
-﻿namespace StarWarsDestiny.Model
+﻿using StarWarsDestiny.Model.Common;
+using System.Collections.Generic;
+
+namespace StarWarsDestiny.Model
 {
-    public class Type : EntityId
+    public class Type : ModelOnlyName
     {
-        public string Name { get; set; }
+        public ICollection<CardType> CardTypes { get; set; }
     }
 }

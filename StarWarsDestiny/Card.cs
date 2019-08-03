@@ -23,7 +23,7 @@ namespace StarWarsDestiny.Model
         public Faction Faction { get; set; }
         public Affiliation Affiliation { get; set; }
         public Artist Artist { get; set; }
-        public ICollection<Type> Types { get; set; }
+        public ICollection<CardType> CardTypes { get; set; }
         public ICollection<Keyword> Keywords { get; set; }
         public byte[] Image { get; set; }
         //TODO COLOCAR EM UM OUTRO LUGAR

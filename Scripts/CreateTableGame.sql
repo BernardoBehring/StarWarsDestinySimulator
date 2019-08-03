@@ -50,6 +50,16 @@ create table Card
 	DataCode varchar(255) not null
 )
 
+create table CardType
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	CardId int not null,
+	TypeId int not null
+)
+
 create table CharacterCard
 (
 	CardId int primary key,
@@ -200,3 +210,9 @@ add foreign key (DieId) references Die(id)
 
 alter table Die
 add foreign key (CardId) references Card(id)
+
+alter table CardType
+add foreign key (CardId) references Card(id)
+
+alter table CardType
+add foreign key (TypeId) references Type(id)

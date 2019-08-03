@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using StarWarsDestiny.Model.Common;
+using System.Collections.Generic;
 
 namespace StarWarsDestiny.Model
 {
-    public class Legality : EntityId
+    public class Legality : ModelOnlyName
     {
-        public string Name { get; set; }
         public ICollection<BalanceForce> BalanceForces { get; set; }
     }
 }

@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.12" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\StarWarsDestiny.CrawlerBase\StarWarsDestiny.Crawler.Base.csproj" />
+    <ProjectReference Include="..\StarWarsDestiny.Service\StarWarsDestiny.Service.csproj" />
+    <ProjectReference Include="..\StarWarsDestiny\StarWarsDestiny.Model.csproj" />
   </ItemGroup>
 
 </Project>

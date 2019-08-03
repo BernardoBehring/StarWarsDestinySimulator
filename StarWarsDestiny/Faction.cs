@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using StarWarsDestiny.Model.Common;
+using System.Collections.Generic;
 
 namespace StarWarsDestiny.Model
 {
-    public class Faction : EntityId
+    public class Faction : ModelOnlyName
     {
-        public string Name { get; set; }
         public ICollection<Card> Cards { get; set; }
     }
 }

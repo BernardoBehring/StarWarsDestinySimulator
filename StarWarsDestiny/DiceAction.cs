@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using StarWarsDestiny.Model.Common;
+using System.Collections.Generic;
 
 namespace StarWarsDestiny.Model
 {
-    public class DiceAction : EntityId
+    public class DiceAction : ModelOnlyName
     {
-        public string Name { get; set; }
         public ICollection<DiceFace> DiceFaces { get; set; }
     }
 }

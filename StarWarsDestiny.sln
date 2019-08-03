@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7C160108-B82
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Repository", "StarWarsDestiny.Repository\StarWarsDestiny.Repository.csproj", "{E660E11F-AA4D-482A-80AC-20E0C56E5E68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Service", "StarWarsDestiny.Service\StarWarsDestiny.Service.csproj", "{4975FAC8-B4B8-48F2-88A1-1F0B2B9A8889}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,10 @@ Global
 		{E660E11F-AA4D-482A-80AC-20E0C56E5E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E660E11F-AA4D-482A-80AC-20E0C56E5E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E660E11F-AA4D-482A-80AC-20E0C56E5E68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4975FAC8-B4B8-48F2-88A1-1F0B2B9A8889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4975FAC8-B4B8-48F2-88A1-1F0B2B9A8889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4975FAC8-B4B8-48F2-88A1-1F0B2B9A8889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4975FAC8-B4B8-48F2-88A1-1F0B2B9A8889}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,6 +122,7 @@ Global
 		{AA2CDF06-7C5F-478A-92EF-D3312E4E48C3} = {5B7CBC99-9F3F-4B9F-9649-6DEA6705316A}
 		{7C160108-B823-462D-BDAB-1FFB9799D800} = {FC98083B-09A2-46D0-AE12-52132C414388}
 		{E660E11F-AA4D-482A-80AC-20E0C56E5E68} = {AA2CDF06-7C5F-478A-92EF-D3312E4E48C3}
+		{4975FAC8-B4B8-48F2-88A1-1F0B2B9A8889} = {AA2CDF06-7C5F-478A-92EF-D3312E4E48C3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07A7EF35-3E46-46A8-9650-C9F774A95647}
