@@ -56,6 +56,8 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
                     card = await GetCardAttributesAsync(td, card);
                 }
 
+                await _cardService.CreateAsync(card);
+
                 listCards.Add(card);
             }
 
@@ -92,7 +94,7 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
                 case "Die":
                     card = await GetDieFaceAsync(card, td, innerText);
                     break;
-                case "SetStarWars":
+                case "Set":
                     card = await GetCardSetAsync(card, td);
                     break;
                 default:

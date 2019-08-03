@@ -1,4 +1,6 @@
-﻿namespace StarWarsDestiny.Model.Common
+﻿using StarWarsDestiny.Common.Model;
+
+namespace StarWarsDestiny.Model.Common
 {
     public class ModelOnlyName : EntityId
     {

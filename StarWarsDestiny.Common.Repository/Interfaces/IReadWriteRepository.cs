@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using StarWarsDestiny.Model;
+using StarWarsDestiny.Common.Model;
 
 namespace StarWarsDestiny.Common.Repository.Interfaces
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using StarWarsDestiny.Model;
+using StarWarsDestiny.Common.Model;
 
 namespace StarWarsDestiny.Common.Repository.Map
 {

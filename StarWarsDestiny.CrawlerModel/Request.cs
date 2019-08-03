@@ -1,4 +1,4 @@
-﻿using StarWarsDestiny.Model;
+﻿using StarWarsDestiny.Common.Model;
 using System;
 
 namespace StarWarsDestiny.Crawler.Model

@@ -32,7 +32,7 @@ namespace StarWarsDestiny.Service.Impl
         {
             var model = await _repository.GetAllWithParametersAsync(a => a.Name == name);
 
-            if (model == default)
+            if (model == default || model.Count() == 0)
                 return -1;
 
             return model.FirstOrDefault().Id;

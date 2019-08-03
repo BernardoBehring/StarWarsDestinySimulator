@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using StarWarsDestiny.Model;
+﻿using StarWarsDestiny.Common.Model;
+using System.Collections.Generic;
 
 namespace StarWarsDestiny.Crawler.Model
 {

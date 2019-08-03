@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using StarWarsDestiny.Common.Model;
 using StarWarsDestiny.Common.Repository.Interfaces;
 using StarWarsDestiny.Common.Service.Interfaces;
-using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Common.Service.Impl
 {

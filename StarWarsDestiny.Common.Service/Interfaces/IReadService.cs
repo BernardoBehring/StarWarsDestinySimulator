@@ -1,7 +1,6 @@
-﻿using System;
+﻿using StarWarsDestiny.Common.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Common.Service.Interfaces
 {

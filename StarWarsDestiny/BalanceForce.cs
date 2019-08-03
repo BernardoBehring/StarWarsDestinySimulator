@@ -1,4 +1,5 @@
-﻿using StarWarsDestiny.Model.Interfaces;
+﻿using StarWarsDestiny.Common.Model;
+using StarWarsDestiny.Model.Interfaces;
 
 namespace StarWarsDestiny.Model
 {

@@ -1,4 +1,6 @@
-﻿namespace StarWarsDestiny.Model
+﻿using StarWarsDestiny.Common.Model;
+
+namespace StarWarsDestiny.Model
 {
     public class CardType : EntityId
     {

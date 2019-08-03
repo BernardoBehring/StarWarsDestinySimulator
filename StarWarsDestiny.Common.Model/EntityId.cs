@@ -1,4 +1,4 @@
-﻿namespace StarWarsDestiny.Model
+﻿namespace StarWarsDestiny.Common.Model
 {
     public class EntityId : Audit
     {

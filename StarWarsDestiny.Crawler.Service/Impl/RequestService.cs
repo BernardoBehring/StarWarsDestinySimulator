@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using StarWarsDestiny.Common.Model;
 using StarWarsDestiny.Common.Repository.Interfaces;
 using StarWarsDestiny.Common.Service.Impl;
 using StarWarsDestiny.Crawler.Model;
 using StarWarsDestiny.Crawler.Model.Enum;
 using StarWarsDestiny.Crawler.Repository.Context;
 using StarWarsDestiny.Crawler.Service.Interfaces;
-using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Crawler.Service.Impl
 {
@@ -22,8 +22,12 @@ namespace StarWarsDestiny.Crawler.Service.Impl
 
         public async Task<Request> GetNextAsync(Robot robot, Site site, Status status)
         {
+            var robotId = robot.Id;
+            var statusId = status.Id;
+            var siteId = site.Id;
+
             var request = await _repository.GetAllWithParametersAsync(a =>
-                a.RobotId == robot.Id && a.StatusId == status.Id && a.Robot.SiteId == site.Id);
+                a.RobotId == robotId && a.StatusId == statusId && a.Robot.SiteId == siteId, nameof(Request.Robot));
             
             return request.FirstOrDefault();
         }

@@ -1,4 +1,4 @@
-﻿
+﻿using StarWarsDestiny.Common.Model;
 using System.Collections.Generic;
 
 namespace StarWarsDestiny.Model

@@ -12,6 +12,7 @@ namespace StarWarsDestiny.Crawler.Card.Executer
         public DownloadCardSWDestinyDBExecutor(IDownloadCardSWDestinyDBExtractor extractor)
         {
             _extractor = extractor;
+            webClient = new WebClient();
         }
         
         public async Task ExecuteAsync()

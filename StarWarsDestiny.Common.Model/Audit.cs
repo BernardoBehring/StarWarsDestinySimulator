@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StarWarsDestiny.Model
+namespace StarWarsDestiny.Common.Model
 {
     public class Audit
     {

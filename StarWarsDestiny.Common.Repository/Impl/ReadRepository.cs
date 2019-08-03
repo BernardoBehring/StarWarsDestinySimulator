@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using StarWarsDestiny.Common.Model;
 using StarWarsDestiny.Common.Repository.Interfaces;
-using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Common.Repository.Impl
 {
@@ -23,12 +23,20 @@ namespace StarWarsDestiny.Common.Repository.Impl
             return await query.ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllWithParametersAsync(Func<T, bool> filter)
+        public async Task<IEnumerable<T>> GetAllWithParametersAsync(Func<T, bool> filter, params string[] include)
         {
             var query = repository.GetQueryable<T>();
 
+            if (include != null)
+            {
+                foreach (var inc in include)
+                {
+                    query = query.Include(inc);
+                }
+            }
+
             if(filter != null)
-                query = query.Where(filter).AsQueryable();
+                return query.Where(filter);
 
             return await query.ToListAsync();
         }

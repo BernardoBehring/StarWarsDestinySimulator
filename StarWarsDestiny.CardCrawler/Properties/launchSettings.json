@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "StarWarsDestiny.Crawler.Card": {
+      "commandName": "Project",
+      "commandLineArgs": "/downloadCards"
+    }
+  }
+}
