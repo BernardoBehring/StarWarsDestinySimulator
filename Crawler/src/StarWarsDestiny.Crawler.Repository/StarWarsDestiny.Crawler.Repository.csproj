@@ -6,14 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StarWarsDestiny.Common.Repository\StarWarsDestiny.Common.Repository.csproj" />
-    <ProjectReference Include="..\StarWarsDestiny.CrawlerModel\StarWarsDestiny.Crawler.Model.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\src\StarWarsDestiny.Common.Repository\StarWarsDestiny.Common.Repository.csproj" />
+    <ProjectReference Include="..\StarWarsDestiny.Crawler.Model\StarWarsDestiny.Crawler.Model.csproj" />
   </ItemGroup>
 
 </Project>

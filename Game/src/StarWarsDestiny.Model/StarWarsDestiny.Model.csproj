@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StarWarsDestiny.Common.Model\StarWarsDestiny.Common.Model.csproj" />
+    <ProjectReference Include="..\..\..\Common\src\StarWarsDestiny.Common.Model\StarWarsDestiny.Common.Model.csproj" />
   </ItemGroup>
 
 </Project>

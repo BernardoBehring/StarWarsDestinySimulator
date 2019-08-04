@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.12" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\src\StarWarsDestiny.Common.Service\StarWarsDestiny.Common.Service.csproj" />
+    <ProjectReference Include="..\..\..\Common\src\StarWarsDestiny.Common.Util\StarWarsDestiny.Common.Util.csproj" />
+    <ProjectReference Include="..\..\..\Game\src\StarWarsDestiny.Repository\StarWarsDestiny.Repository.csproj" />
+    <ProjectReference Include="..\..\..\Game\src\StarWarsDestiny.Service\StarWarsDestiny.Service.csproj" />
+    <ProjectReference Include="..\StarWarsDestiny.Crawler.Base\StarWarsDestiny.Crawler.Base.csproj" />
+    <ProjectReference Include="..\StarWarsDestiny.Crawler.Model\StarWarsDestiny.Crawler.Model.csproj" />
+    <ProjectReference Include="..\StarWarsDestiny.Crawler.Repository\StarWarsDestiny.Crawler.Repository.csproj" />
+    <ProjectReference Include="..\StarWarsDestiny.Crawler.Service\StarWarsDestiny.Crawler.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.dependencyinjection.abstractions\2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.logging.abstractions\2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

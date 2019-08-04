@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Impl\" />
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\src\StarWarsDestiny.Common.Repository\StarWarsDestiny.Common.Repository.csproj" />
+    <ProjectReference Include="..\StarWarsDestiny.Model\StarWarsDestiny.Model.csproj" />
+  </ItemGroup>
+
+</Project>

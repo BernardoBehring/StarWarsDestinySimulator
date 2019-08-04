@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using StarWarsDestiny.Crawler.Base.Controller;
+﻿using StarWarsDestiny.Crawler.Base.Controller;
 using StarWarsDestiny.Crawler.Model.Enum;
 using StarWarsDestiny.Crawler.Service.Interfaces;
 using System.Threading.Tasks;

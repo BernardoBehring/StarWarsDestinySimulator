@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using StarWarsDestiny.Crawler.Model;
-using System.IO;
 
 namespace StarWarsDestiny.Crawler.Repository.Context
 {
     public class CrawlerContext : DbContext
     {
-        private static IConfiguration _configuration;
         public CrawlerContext(DbContextOptions<CrawlerContext> options) : base(options)
         {
             
