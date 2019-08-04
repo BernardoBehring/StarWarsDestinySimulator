@@ -4,6 +4,6 @@ namespace StarWarsDestiny.Crawler.Card.Interfaces
 {
     public interface IDownloadCardSWDestinyDBExtractor : ICrawlerBaseExtractor
     {
-        
+        int GetMaxPageNumber(string page);
     }
 }

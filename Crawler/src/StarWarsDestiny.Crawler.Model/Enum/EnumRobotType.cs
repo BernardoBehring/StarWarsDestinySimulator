@@ -2,6 +2,7 @@
 {
     public enum EnumRobotType
     {
-        CardDownload = 1
+        CardDownload = 1,
+        CardDetailDownload = 2
     }
 }

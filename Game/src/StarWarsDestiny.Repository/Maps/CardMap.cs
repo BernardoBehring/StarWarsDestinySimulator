@@ -17,6 +17,10 @@ namespace StarWarsDestiny.Repository.Maps
                 .HasMaxLength(255)
                 .IsUnicode(false);
 
+            builder.Property(e => e.Subtitle)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+
             builder.Property(e => e.Text)
                 .IsUnicode(false);
 

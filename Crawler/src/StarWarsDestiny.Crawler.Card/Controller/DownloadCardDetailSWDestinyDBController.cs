@@ -7,12 +7,12 @@ using StarWarsDestiny.Crawler.Card.Interfaces;
 
 namespace StarWarsDestiny.Crawler.Card.Controller
 {
-    public class DownloadCardSWDestinyDBController : CrawlerBaseController, IDownloadCardSWDestinyDBController
+    public class DownloadCardDetailSWDestinyDBController : CrawlerBaseController, IDownloadCardDetailSWDestinyDBController
     {
         private readonly IRobotService _robotService;
         private readonly ISiteService _siteService;
 
-        public DownloadCardSWDestinyDBController(IRequestService requestService, IStatusService statusService,
+        public DownloadCardDetailSWDestinyDBController(IRequestService requestService, IStatusService statusService,
             IRobotService robotService, ISiteService siteService,
             IDownloadCardSWDestinyDBExecutor executor) : base(requestService, statusService,
             robotService, siteService, executor)
@@ -23,8 +23,8 @@ namespace StarWarsDestiny.Crawler.Card.Controller
 
         protected override async Task SetStartVariablesAsync()
         {
-            Robot = await _robotService.GetRobotBySiteAndType(EnumSite.SWDestinyDB, EnumRobotType.CardDownload);
-            Site = await _siteService.GetByIdAsync(((int) EnumSite.SWDestinyDB).ToEntityId());
+            Robot = await _robotService.GetRobotBySiteAndType(EnumSite.SWDestinyDB, EnumRobotType.CardDetailDownload);
+            Site = await _siteService.GetByIdAsync(((int)EnumSite.SWDestinyDB).ToEntityId());
         }
     }
 }

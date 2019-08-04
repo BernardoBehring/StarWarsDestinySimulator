@@ -53,7 +53,8 @@ create table Card
 	ElitePoints int null,
 	Health int null,
 	IsCharacter bit not null,
-	Image varchar(max) null
+	Image varchar(max) null,
+	Subtitle varchar(255) null
 )
 
 create table CardType
@@ -90,12 +91,13 @@ create table DiceFace
 	InsertedIn datetime not null,
 	UpdatedIn datetime,
 	DeletedIn datetime,
-	Value int not null,
+	Value varchar(5) not null,
 	IsModifier bit not null,
 	DiceActionId int not null,
 	Cost int not null,
 	DieId int not null
 )
+
 
 create table Die
 (

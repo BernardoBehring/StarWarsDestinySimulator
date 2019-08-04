@@ -5,6 +5,7 @@ using StarWarsDestiny.Model;
 using StarWarsDestiny.Service.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using StarWarsDestiny.Model.Enum;
 using CardSWD = StarWarsDestiny.Model.Card;
@@ -36,35 +37,80 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
             _cardService = cardService;
         }
 
-        public async Task ProcessPageAsync(string page)
+        public int GetMaxPageNumber(string page)
         {
+            if (page.Contains("Your query didn&#039;t match any card."))
+                return 0;
+
+            var document = new HtmlDocument();
+            document.LoadHtml(page);
+
+            var ul = document.DocumentNode.SelectSingleNode("//ul[@class='pagination']");
+
+            var lis = ul.SelectNodes(".//li");
+
+            var li = lis.LastOrDefault();
+
+            if (li == default)
+                return 1;
+
+            var link = li.SelectSingleNode("./a");
+            var href = link.Attributes["href"].Value;
+
+            if (href == "#")
+                return 1;
+
+            var pageLink = "page=";
+            var inic = href.IndexOf(pageLink) + pageLink.Length;
+            var len = href.Length - inic;
+
+            var pageNumber = href.Substring(inic, len);
+
+            return Convert.ToInt32(pageNumber);
+        }
+
+        public async Task ProcessPageAsync(string page, object obj)
+        {
+            if (page.Contains("Your query didn&#039;t match any card."))
+                return;
+
             var document = new HtmlDocument();
             document.LoadHtml(page);
 
             var table = document.DocumentNode.SelectSingleNode("//table[contains(@class, 'rwd-table')]");
 
-            var trs = table.SelectNodes("./tr");
-            var listCards = new List<CardSWD>();
-
-            foreach (var tr in trs)
+            if (table != null)
             {
-                var tds = tr.SelectNodes("./td");
-                var card = new CardSWD
-                {
-                    InsertedIn = DateTime.Now
-                };
+                var trs = table.SelectNodes("./tr");
+                var listCards = new List<CardSWD>();
 
-                foreach (var td in tds)
+                foreach (var tr in trs)
                 {
-                    card = await GetCardAttributesAsync(td, card);
+                    var tds = tr.SelectNodes("./td");
+                    var card = new CardSWD
+                    {
+                        InsertedIn = DateTime.Now
+                    };
+
+                    foreach (var td in tds)
+                    {
+                        card = await GetCardAttributesAsync(td, card);
+                    }
+
+                    var cardInDB = await _cardService.GetCardInDb(card);
+
+                    if (!cardInDB)
+                    {
+                        await _cardService.AddAsync(card);
+                        Console.Write($"Card: {card.Name} included!");
+                        listCards.Add(card);
+                    }
+                    else
+                    {
+                        Console.Write($"Card: {card.Name} alread exists!");
+                    }
+
                 }
-
-                var cardInDB = await _cardService.GetCardInDb(card);
-
-                if(!cardInDB)
-                    await _cardService.AddAsync(card);
-
-                listCards.Add(card);
             }
         }
 
@@ -130,7 +176,16 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
             var span = td.SelectSingleNode("./span");
             var classSpan = span.Attributes["class"].Value;
             var link = td.SelectSingleNode("./a");
-            card.Name = link.InnerText.FormatText();
+            var subtitle = link.SelectSingleNode("./span[@class='card-subtitle']");
+            var name = link.InnerText.FormatText();
+
+            if (subtitle != default)
+            {
+                card.Subtitle = subtitle.InnerText.FormatText().Substring(2);
+                name = name.Replace(subtitle.InnerText.FormatText(), "");
+            }
+
+            card.Name = name;
             card.Url = link.Attributes["href"].Value;
             card.DataCode = link.Attributes["data-code"].Value;
 
@@ -265,7 +320,7 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
 
                     var dieFace = new DiceFace
                     {
-                        Value = string.IsNullOrWhiteSpace(splitValueCost[0]) ? 0 : Convert.ToInt32(splitValueCost[0]),
+                        Value = string.IsNullOrWhiteSpace(splitValueCost[0]) ? "0" : splitValueCost[0].Trim(),
                         Cost = splitValueCost.Length == 1 || string.IsNullOrWhiteSpace(splitValueCost[1])
                             ? 0
                             : Convert.ToInt32(splitValueCost[1]),

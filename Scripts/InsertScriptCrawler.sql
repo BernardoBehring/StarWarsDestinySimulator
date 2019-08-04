@@ -23,6 +23,9 @@ select * from RobotType
 insert into RobotType
 select getdate(), null, null, 'Download Card'
 
+insert into RobotType
+select getdate(), null, null, 'Download Card Detail'
+
 select * from Site
 
 insert into Site
@@ -32,3 +35,6 @@ select * from Robot
 
 insert into Robot
 select getdate(), null, null, 'Download Card SWDestinyDB', 1, 1
+
+insert into Robot
+select getdate(), null, null, 'Download Card Detail SWDestinyDB', 2, 1

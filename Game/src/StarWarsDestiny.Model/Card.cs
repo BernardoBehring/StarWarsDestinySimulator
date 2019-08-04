@@ -7,6 +7,7 @@ namespace StarWarsDestiny.Model
     public class Card : EntityId, ICharacterAtributes, INonCharacterAtributes
     {
         public string Name { get; set; }
+        public string Subtitle { get; set; }
         public string Text { get; set; }
         public int Number { get; set; }
         public int? ArtistId { get; set; }

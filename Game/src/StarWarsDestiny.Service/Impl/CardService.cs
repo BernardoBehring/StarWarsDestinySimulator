@@ -55,6 +55,9 @@ namespace StarWarsDestiny.Service.Impl
                     diceFace.DieId = die.Id;
                     await _diceFaceService.CreateAsync(diceFace);
                 }
+
+                card.DieId = die.Id;
+                await PartialUpdateAsync(card, new[] {nameof(card.DieId)});
             }
 
             return card;

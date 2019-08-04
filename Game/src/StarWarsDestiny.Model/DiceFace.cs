@@ -4,7 +4,7 @@ namespace StarWarsDestiny.Model
 {
     public class DiceFace : EntityId
     {
-        public int Value { get; set; }
+        public string Value { get; set; }
         public bool IsModifier { get; set; }
         public int DiceActionId { get; set; }
         public int Cost { get; set; }
