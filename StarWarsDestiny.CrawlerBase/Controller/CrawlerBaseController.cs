@@ -61,14 +61,30 @@ namespace StarWarsDestiny.Crawler.Base.Controller
             await _requestService.LogSuccessfullyConcludedAsync(requestId.ToEntityId());
         }
 
-        private async Task LogErrorWaitingAnalyzeAsync(int requestId, Exception erro)
+        private async Task LogErrorWaitingAnalyzeAsync(int requestId, Exception error)
         {
-            await _requestService.LogErrorWaitingAnalyzeAsync(requestId.ToEntityId(), erro.Message);
+            var errorMessage = string.Empty;
+            GetErrorMessage(error, ref errorMessage);
+
+            await _requestService.LogErrorWaitingAnalyzeAsync(requestId.ToEntityId(), errorMessage.Trim());
         }
-        
+
+        private static string GetErrorMessage(Exception error, ref string errorMessage)
+        {
+            errorMessage = errorMessage + " " + error.Message;
+
+            if (error.InnerException == null)
+                return errorMessage;
+
+            GetErrorMessage(error.InnerException, ref errorMessage);
+            
+            return errorMessage;
+        }
+
         private async Task LogTerminationExecutionAsync(int requestId)
         {
-            await _requestService.LogTerminationExecutionAsync(requestId.ToEntityId());
+            if(requestId > 0)
+                await _requestService.LogTerminationExecutionAsync(requestId.ToEntityId());
         }
 
         protected virtual Task SetStartVariablesAsync()

@@ -39,7 +39,7 @@ create table Card
 	Name varchar(255) not null,
 	Text varchar(max),
 	Number int not null,
-	ArtistId int not null,
+	ArtistId int null,
 	AffiliationId int not null,
 	FactionId int not null,
 	ColorId int not null,
@@ -52,7 +52,8 @@ create table Card
 	Points int null,
 	ElitePoints int null,
 	Health int null,
-	IsCharacter bit not null
+	IsCharacter bit not null,
+	Image varchar(max) null
 )
 
 create table CardType

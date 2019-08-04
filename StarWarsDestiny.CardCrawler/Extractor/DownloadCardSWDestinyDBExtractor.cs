@@ -49,19 +49,23 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
             foreach (var tr in trs)
             {
                 var tds = tr.SelectNodes("./td");
-                var card = new CardSWD();
+                var card = new CardSWD
+                {
+                    InsertedIn = DateTime.Now
+                };
 
                 foreach (var td in tds)
                 {
                     card = await GetCardAttributesAsync(td, card);
                 }
 
-                await _cardService.CreateAsync(card);
+                var cardInDB = await _cardService.GetCardInDb(card);
+
+                if(!cardInDB)
+                    await _cardService.AddAsync(card);
 
                 listCards.Add(card);
             }
-
-            await _cardService.CreateAsync(listCards);
         }
 
         private async Task<CardSWD> GetCardAttributesAsync(HtmlNode td, CardSWD card)
@@ -229,40 +233,50 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
             var spanDie = td.SelectSingleNode("./span");
             if (spanDie != null)
             {
-                if (card.Die == null)
+                var cardInDB = await _cardService.GetCardInDb(card);
+                if (!cardInDB)
                 {
-                    card.Die = new Die();
+                    if (card.Die == null)
+                    {
+                        card.Die = new Die
+                        {
+                            InsertedIn = DateTime.Now,
+                            Card = card
+                        };
+                    }
+
+                    var classDie = spanDie.Attributes["class"].Value;
+                    var diceActionId = await GetDiceActionAsync(classDie);
+
+                    if (card.Die.DiceFaces == null)
+                    {
+                        card.Die.DiceFaces = new List<DiceFace>();
+                    }
+
+                    var isModifier = false;
+
+                    if (innerText.Contains("+"))
+                    {
+                        isModifier = true;
+                        innerText = innerText.Replace("+", "");
+                    }
+
+                    var splitValueCost = innerText.Split('/');
+
+                    var dieFace = new DiceFace
+                    {
+                        Value = string.IsNullOrWhiteSpace(splitValueCost[0]) ? 0 : Convert.ToInt32(splitValueCost[0]),
+                        Cost = splitValueCost.Length == 1 || string.IsNullOrWhiteSpace(splitValueCost[1])
+                            ? 0
+                            : Convert.ToInt32(splitValueCost[1]),
+                        DiceActionId = diceActionId,
+                        IsModifier = isModifier,
+                        InsertedIn = DateTime.Now,
+                        Die = card.Die
+                    };
+
+                    card.Die.DiceFaces.Add(dieFace);
                 }
-
-                var classDie = spanDie.Attributes["class"].Value;
-                var diceActionId = await GetDiceActionAsync(classDie);
-
-                if (card.Die.Faces == null)
-                {
-                    card.Die.Faces = new List<DiceFace>();
-                }
-
-                var isModifier = false;
-
-                if (innerText.Contains("+"))
-                {
-                    isModifier = true;
-                    innerText = innerText.Replace("+", "");
-                }
-
-                var splitValueCost = innerText.Split('/');
-
-                var dieFace = new DiceFace
-                {
-                    Value = string.IsNullOrWhiteSpace(splitValueCost[0]) ? 0 : Convert.ToInt32(splitValueCost[0]),
-                    Cost = splitValueCost.Length == 1 || string.IsNullOrWhiteSpace(splitValueCost[1])
-                        ? 0
-                        : Convert.ToInt32(splitValueCost[1]),
-                    DiceActionId = diceActionId,
-                    IsModifier = isModifier
-                };
-
-                card.Die.Faces.Add(dieFace);
             }
 
             return card;

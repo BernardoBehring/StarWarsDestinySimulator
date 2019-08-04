@@ -14,11 +14,6 @@ namespace StarWarsDestiny.Repository.Maps
 
             builder.Property(e => e.CardId)
                 .IsRequired();
-
-            builder.HasOne(d => d.Card)
-                .WithOne(p => p.Die)
-                .HasForeignKey<Die>(d => d.CardId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

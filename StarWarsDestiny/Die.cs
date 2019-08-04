@@ -7,7 +7,6 @@ namespace StarWarsDestiny.Model
     {
         public int CardId { get; set; }
         public Card Card { get; set; }
-        public ICollection<DiceFace> Faces { get; set; }
         public ICollection<DiceFace> DiceFaces { get; set; }
     }
 }

@@ -89,6 +89,8 @@ namespace StarWarsDestiny.Crawler.Card
                     .AddScoped<IRarityService, RarityService>()
                     .AddScoped<ISetStarWarsService, SetStarWarsService>()
                     .AddScoped<ITypeService, TypeService>()
+                    .AddScoped<IDieService, DieService>()
+                    .AddScoped<IDiceFaceService, DiceFaceService>()
                 ;
         }
     }
