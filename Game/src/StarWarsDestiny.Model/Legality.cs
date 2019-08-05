@@ -5,6 +5,6 @@ namespace StarWarsDestiny.Model
 {
     public class Legality : ModelOnlyName
     {
-        public ICollection<BalanceForce> BalanceForces { get; set; }
+        public ICollection<CardLegality> CardLegalities { get; set; }
     }
 }

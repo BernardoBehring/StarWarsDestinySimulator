@@ -7,13 +7,13 @@ using StarWarsDestiny.Service.Interfaces;
 
 namespace StarWarsDestiny.Crawler.Card.Executer
 {
-    public class DownloadCardDetailSEDestinyDBExecutor : IDownloadCardSWDestinyDBExecutor
+    public class DownloadCardDetailSWDestinyDBExecutor : IDownloadCardSWDestinyDBExecutor
     {
         private readonly IDownloadCardDetailSWDestinyDBExtractor _extractor;
         private readonly ICardService _cardService;
 
         public WebClient webClient { get; set; }
-        public DownloadCardDetailSEDestinyDBExecutor(IDownloadCardDetailSWDestinyDBExtractor extractor,
+        public DownloadCardDetailSWDestinyDBExecutor(IDownloadCardDetailSWDestinyDBExtractor extractor,
             ICardService cardService)
         {
             _extractor = extractor;

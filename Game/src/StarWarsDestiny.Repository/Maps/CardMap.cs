@@ -56,6 +56,13 @@ namespace StarWarsDestiny.Repository.Maps
 
             builder.Property(e => e.Cost);
 
+            builder.Property(e => e.IsCharacter);
+
+            builder.Property(e => e.IsUnique);
+
+            builder.Property(e => e.Flavor)
+                .IsUnicode(false);
+
             builder.HasOne(d => d.Affiliation)
                 .WithMany(p => p.Cards)
                 .HasForeignKey(d => d.AffiliationId)

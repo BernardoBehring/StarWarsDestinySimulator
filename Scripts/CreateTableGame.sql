@@ -23,8 +23,7 @@ create table BalanceForce
 	InsertedIn datetime not null,
 	UpdatedIn datetime,
 	DeletedIn datetime,
-	CardId int not null,
-	LegalityId int not null,
+	CardLegalityId int not null,
 	Points int not null,
 	ElitePoints int null,
 	Health int not null
@@ -54,7 +53,9 @@ create table Card
 	Health int null,
 	IsCharacter bit not null,
 	Image varchar(max) null,
-	Subtitle varchar(255) null
+	Subtitle varchar(255) null,
+	IsUnique bit null,
+	Flavor varchar(max) null
 )
 
 create table CardType
@@ -163,11 +164,25 @@ create table Type
 	Name varchar(255) not null
 )
 
-alter table BalanceForce
+create table CardLegality
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	CardId int not null,
+	LegalityId int not null,
+	IsLegal bit not null
+)
+
+alter table CardLegality
 add foreign key (CardId) references Card(id)
 
-alter table BalanceForce
+alter table CardLegality
 add foreign key (LegalityId) references Legality(id)
+
+alter table BalanceForce
+add foreign key (CardLegalityId) references CardLegality(id)
 
 alter table Card
 add foreign key (ArtistId) references Artist(id)

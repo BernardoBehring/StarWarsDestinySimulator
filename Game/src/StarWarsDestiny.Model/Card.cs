@@ -24,6 +24,8 @@ namespace StarWarsDestiny.Model
         public int Health { get; set; }
         public int Cost { get; set; }
         public bool IsCharacter { get; set; }
+        public bool IsUnique { get; set; }
+        public string Flavor { get; set; }
         public SetStarWars SetStarWars { get; set; }
         public Die Die { get; set; }
         public Rarity Rarity { get; set; }
@@ -34,8 +36,6 @@ namespace StarWarsDestiny.Model
         public ICollection<CardType> CardTypes { get; set; }
         public ICollection<Keyword> Keywords { get; set; }
         public byte[] Image { get; set; }
-        //TODO COLOCAR EM UM OUTRO LUGAR
-        public ICollection<Legality> Legalities { get; set; }
-        public ICollection<BalanceForce> BalanceForces { get; set; }
+        public ICollection<CardLegality> CardLegalities { get; set; }
     }
 }

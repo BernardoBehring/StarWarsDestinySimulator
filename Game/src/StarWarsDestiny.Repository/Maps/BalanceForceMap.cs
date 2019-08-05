@@ -12,12 +12,9 @@ namespace StarWarsDestiny.Repository.Maps
             base.Configure(builder);
             builder.ToTable("BalanceForce");
 
-            builder.Property(e => e.CardId)
+            builder.Property(e => e.CardLegalityId)
                 .IsRequired();
-
-            builder.Property(e => e.LegalityId)
-                .IsRequired();
-
+            
             builder.Property(e => e.Health)
                 .HasColumnName("Health")
                 .IsRequired();
@@ -28,15 +25,9 @@ namespace StarWarsDestiny.Repository.Maps
             builder.Property(e => e.Points)
                 .HasColumnName("Points");
 
-            builder.HasOne(d => d.Card)
-                .WithMany(p => p.BalanceForces)
-                .HasForeignKey(d => d.CardId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            builder.HasOne(d => d.Legality)
-                .WithMany(p => p.BalanceForces)
-                .HasForeignKey(d => d.LegalityId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+            builder.HasOne(d => d.CardLegality)
+                .WithOne(p => p.BalanceForce)
+                .HasForeignKey<BalanceForce>(d => d.CardLegalityId);
         }
     }
 }

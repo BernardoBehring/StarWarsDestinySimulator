@@ -2,7 +2,7 @@
 
 namespace StarWarsDestiny.Crawler.Card.Interfaces
 {
-    public interface IDownloadCardDetailSEDestinyDBExecutor : ICrawlerBaseExecutor
+    public interface IDownloadCardDetailSWDestinyDBExecutor : ICrawlerBaseExecutor
     {
     }
 }
