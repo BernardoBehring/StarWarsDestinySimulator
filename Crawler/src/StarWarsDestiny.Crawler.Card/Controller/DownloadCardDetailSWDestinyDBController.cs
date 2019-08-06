@@ -14,7 +14,7 @@ namespace StarWarsDestiny.Crawler.Card.Controller
 
         public DownloadCardDetailSWDestinyDBController(IRequestService requestService, IStatusService statusService,
             IRobotService robotService, ISiteService siteService,
-            IDownloadCardSWDestinyDBExecutor executor) : base(requestService, statusService,
+            IDownloadCardDetailSWDestinyDBExecutor executor) : base(requestService, statusService,
             robotService, siteService, executor)
         {
             _robotService = robotService;

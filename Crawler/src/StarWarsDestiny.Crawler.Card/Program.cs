@@ -45,21 +45,19 @@ namespace StarWarsDestiny.Crawler.Card
             logger.LogDebug(DateTime.Now.ToLongDateString());
             logger.LogDebug("Executing");
 
-            var downloadCardController = serviceProvider.GetService<IDownloadCardSWDestinyDBController>();
-
             if (args.Length > 0 && string.Equals(args[0], "/downloadCards", StringComparison.CurrentCultureIgnoreCase))
             {
-                try
-                {
-                    await downloadCardController.ExecuteAsync(status.Value);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
+                var downloadCardController = serviceProvider.GetService<IDownloadCardSWDestinyDBController>();
+                await downloadCardController.ExecuteAsync(status.Value);
             }
-            
+            else if (args.Length > 0 &&
+                     string.Equals(args[0], "/downloadCardDetails", StringComparison.CurrentCultureIgnoreCase))
+            {
+                var downloadCardDetailController =
+                    serviceProvider.GetService<IDownloadCardDetailSWDestinyDBController>();
+                await downloadCardDetailController.ExecuteAsync(status.Value);
+            }
+
             logger.LogDebug("All done!");
         }
 
@@ -76,21 +74,30 @@ namespace StarWarsDestiny.Crawler.Card
                     .AddScoped<IDownloadCardSWDestinyDBController, DownloadCardSWDestinyDBController>()
                     .AddScoped<IDownloadCardSWDestinyDBExecutor, DownloadCardSWDestinyDBExecutor>()
                     .AddScoped<IDownloadCardSWDestinyDBExtractor, DownloadCardSWDestinyDBExtractor>()
+
+                    .AddScoped<IDownloadCardDetailSWDestinyDBController, DownloadCardDetailSWDestinyDBController>()
+                    .AddScoped<IDownloadCardDetailSWDestinyDBExecutor, DownloadCardDetailSWDestinyDBExecutor>()
+                    .AddScoped<IDownloadCardDetailSWDestinyDBExtractor, DownloadCardDetailSWDestinyDBExtractor>()
+
                     .AddScoped<IRequestService, RequestService>()
                     .AddScoped<IRobotService, RobotService>()
                     .AddScoped<ISiteService, SiteService>()
                     .AddScoped<IStatusService, StatusService>()
 
                     .AddScoped<IAffiliationService, AffiliationService>()
+                    .AddScoped<IArtistService, ArtistService>()
+                    .AddScoped<IBalanceForceService, BalanceForceService>()
+                    .AddScoped<ICardLegalityService, CardLegalityService>()
                     .AddScoped<ICardService, CardService>()
                     .AddScoped<IColorService, ColorService>()
                     .AddScoped<IDiceActionService, DiceActionService>()
+                    .AddScoped<IDiceFaceService, DiceFaceService>()
+                    .AddScoped<IDieService, DieService>()
                     .AddScoped<IFactionService, FactionService>()
+                    .AddScoped<ILegalityService, LegalityService>()
                     .AddScoped<IRarityService, RarityService>()
                     .AddScoped<ISetStarWarsService, SetStarWarsService>()
                     .AddScoped<ITypeService, TypeService>()
-                    .AddScoped<IDieService, DieService>()
-                    .AddScoped<IDiceFaceService, DiceFaceService>()
                 ;
         }
     }

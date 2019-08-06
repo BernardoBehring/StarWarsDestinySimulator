@@ -43,6 +43,10 @@ namespace StarWarsDestiny.Repository.Maps
                 .HasMaxLength(500)
                 .IsUnicode(false);
 
+            builder.Property(e => e.UrlImage)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
             builder.Property(e => e.DataCode)
                 .IsRequired()
                 .HasMaxLength(255)

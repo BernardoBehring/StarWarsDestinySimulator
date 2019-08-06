@@ -102,12 +102,12 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
                     if (!cardInDB)
                     {
                         await _cardService.AddAsync(card);
-                        Console.Write($"Card: {card.Name} included!");
+                        Console.WriteLine($"Card: {card.Name} included!");
                         listCards.Add(card);
                     }
                     else
                     {
-                        Console.Write($"Card: {card.Name} alread exists!");
+                        Console.WriteLine($"Card: {card.Name} alread exists!");
                     }
 
                 }

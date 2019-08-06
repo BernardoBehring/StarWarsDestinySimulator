@@ -18,14 +18,16 @@ namespace StarWarsDestiny.Model
         public int? DieId { get; set; }
         public int SetStarWarsId { get; set; }
         public string Url { get; set; }
+        public string UrlImage { get; set; }
         public string DataCode { get; set; }
-        public int Points { get; set; }
+        public int? Points { get; set; }
         public int? ElitePoints { get; set; }
-        public int Health { get; set; }
-        public int Cost { get; set; }
+        public int? Health { get; set; }
+        public int? Cost { get; set; }
         public bool IsCharacter { get; set; }
-        public bool IsUnique { get; set; }
+        public bool? IsUnique { get; set; }
         public string Flavor { get; set; }
+        public string Image { get; set; }
         public SetStarWars SetStarWars { get; set; }
         public Die Die { get; set; }
         public Rarity Rarity { get; set; }
@@ -35,7 +37,6 @@ namespace StarWarsDestiny.Model
         public Artist Artist { get; set; }
         public ICollection<CardType> CardTypes { get; set; }
         public ICollection<Keyword> Keywords { get; set; }
-        public byte[] Image { get; set; }
         public ICollection<CardLegality> CardLegalities { get; set; }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface INonCharacterAtributes
     {
-        int Cost { get; set; }
+        int? Cost { get; set; }
     }
 }

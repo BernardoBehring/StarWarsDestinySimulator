@@ -1,5 +1,6 @@
 ﻿
 using StarWarsDestiny.Common.Model;
+using System.Collections.Generic;
 
 namespace StarWarsDestiny.Model
 {
@@ -10,6 +11,6 @@ namespace StarWarsDestiny.Model
         public bool IsLegal { get; set; }
         public Card Card { get; set; }
         public Legality Legality { get; set; }
-        public BalanceForce BalanceForce { get; set; }
+        public ICollection<BalanceForce> BalanceForces { get; set; }
     }
 }

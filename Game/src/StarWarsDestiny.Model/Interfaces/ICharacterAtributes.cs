@@ -2,8 +2,8 @@
 {
     public interface ICharacterAtributes
     {
-        int Points { get; set; }
+        int? Points { get; set; }
         int? ElitePoints { get; set; }
-        int Health { get; set; }
+        int? Health { get; set; }
     }
 }

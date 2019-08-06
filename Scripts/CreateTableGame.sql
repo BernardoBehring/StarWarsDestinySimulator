@@ -55,8 +55,10 @@ create table Card
 	Image varchar(max) null,
 	Subtitle varchar(255) null,
 	IsUnique bit null,
-	Flavor varchar(max) null
+	Flavor varchar(max) null,
+	UrlImage varchar(500) null
 )
+
 
 create table CardType
 (

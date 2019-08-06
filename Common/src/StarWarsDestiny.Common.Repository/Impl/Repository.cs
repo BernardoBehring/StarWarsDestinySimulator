@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ namespace StarWarsDestiny.Common.Repository.Impl
         public async Task UpdateAsync<T>(T model) where T : EntityId
         {
             Detach<T>(model.Id);
+            model.UpdatedIn = DateTime.Now;
             DbContext.Set<T>().Update(model);
             await DbContext.SaveChangesAsync();
         }

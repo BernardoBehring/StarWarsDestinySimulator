@@ -16,8 +16,7 @@ namespace StarWarsDestiny.Repository.Maps
                 .IsRequired();
             
             builder.Property(e => e.Health)
-                .HasColumnName("Health")
-                .IsRequired();
+                .HasColumnName("Health");
 
             builder.Property(e => e.ElitePoints)
                 .HasColumnName("ElitePoints");
@@ -26,8 +25,8 @@ namespace StarWarsDestiny.Repository.Maps
                 .HasColumnName("Points");
 
             builder.HasOne(d => d.CardLegality)
-                .WithOne(p => p.BalanceForce)
-                .HasForeignKey<BalanceForce>(d => d.CardLegalityId);
+                .WithMany(p => p.BalanceForces)
+                .HasForeignKey(d => d.CardLegalityId);
         }
     }
 }
