@@ -1,4 +1,5 @@
 ﻿using StarWarsDestiny.Common.Model;
+using StarWarsDestiny.Model.Enum;
 
 namespace StarWarsDestiny.Model
 {
@@ -6,5 +7,6 @@ namespace StarWarsDestiny.Model
     {
         public string Name { get; set; }
         public string Text { get; set; }
+        public EnumKeyWords EnumKeyWords { get; set; }
     }
 }

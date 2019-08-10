@@ -10,7 +10,7 @@ namespace StarWarsDestiny.Repository.Maps
         public new void Configure(EntityTypeBuilder<Rarity> builder)
         {
             base.Configure(builder);
-            builder.ToTable("Rarity");
+            builder.ToTable("EnumRarity");
 
             builder.Property(e => e.Name)
                 .IsRequired()

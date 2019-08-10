@@ -43,6 +43,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsDestiny.Common.Serv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsDestiny.Common.Util", "Common\src\StarWarsDestiny.Common.Util\StarWarsDestiny.Common.Util.csproj", "{63DE2E3A-F892-4B3A-AA9B-A43285C1D0A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Game", "StarWarsDestiny.Game\StarWarsDestiny.Game.csproj", "{B50C6965-CADD-4E4A-879B-9CCE92D1F733}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{63DE2E3A-F892-4B3A-AA9B-A43285C1D0A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63DE2E3A-F892-4B3A-AA9B-A43285C1D0A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63DE2E3A-F892-4B3A-AA9B-A43285C1D0A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B50C6965-CADD-4E4A-879B-9CCE92D1F733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B50C6965-CADD-4E4A-879B-9CCE92D1F733}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B50C6965-CADD-4E4A-879B-9CCE92D1F733}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B50C6965-CADD-4E4A-879B-9CCE92D1F733}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +129,7 @@ Global
 		{8B837EE8-F731-4D02-89A2-427E05C08660} = {7C160108-B823-462D-BDAB-1FFB9799D800}
 		{4E807267-4641-4616-B3EC-B9690B5C85EE} = {7C160108-B823-462D-BDAB-1FFB9799D800}
 		{63DE2E3A-F892-4B3A-AA9B-A43285C1D0A1} = {7C160108-B823-462D-BDAB-1FFB9799D800}
+		{B50C6965-CADD-4E4A-879B-9CCE92D1F733} = {53195062-56D2-4DA8-A3E1-5D21912DCF00}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07A7EF35-3E46-46A8-9650-C9F774A95647}
