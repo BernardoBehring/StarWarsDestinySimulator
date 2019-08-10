@@ -25,6 +25,8 @@ namespace StarWarsDestiny.Model
         public int? Health { get; set; }
         public int? Cost { get; set; }
         public bool IsCharacter { get; set; }
+        public bool IsSuport { get; set; }
+        public bool IsUpgrade { get; set; }
         public bool? IsUnique { get; set; }
         public string Flavor { get; set; }
         public string Image { get; set; }
@@ -37,6 +39,7 @@ namespace StarWarsDestiny.Model
         public Artist Artist { get; set; }
         public ICollection<CardType> CardTypes { get; set; }
         public ICollection<Keyword> Keywords { get; set; }
+        public ICollection<Effect> Effects { get; set; }
         public ICollection<CardLegality> CardLegalities { get; set; }
     }
 }

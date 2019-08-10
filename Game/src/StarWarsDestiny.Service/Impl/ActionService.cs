@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using StarWarsDestiny.Common.Repository.Interfaces;
 using StarWarsDestiny.Common.Util;
 using StarWarsDestiny.Model;
+using StarWarsDestiny.Model.Dto;
 using StarWarsDestiny.Model.Enum;
 using StarWarsDestiny.Repository.Context;
 using StarWarsDestiny.Service.Interfaces;
@@ -13,50 +14,192 @@ namespace StarWarsDestiny.Service.Impl
     public class ActionService : ModelOnlyNameService<Action, StarWarsDestinyContext>, IActionService
     {
         private readonly IGameService _gameService;
+        private readonly ICardService _cardService;
+        private readonly IPlayerGameService _playerGameService;
 
-        public ActionService(IReadWriteRepository<Action, StarWarsDestinyContext> repository, IGameService gameService) : base(repository)
+        public ActionService(IReadWriteRepository<Action, StarWarsDestinyContext> repository, 
+            IGameService gameService, ICardService cardService, IPlayerGameService playerGameService) : base(repository)
         {
             _gameService = gameService;
+            _cardService = cardService;
+            _playerGameService = playerGameService;
         }
 
-        public async Task<IEnumerable<EnumAction>> GetListPossibleActionsAsync(int gameId, int playerId, int roundId)
+        public async Task<IEnumerable<EnumAction>> GetListPossibleActionsAsync(GameActionDto gameActionDto)
         {
-            var game = await _gameService.GetByIdAsync(gameId.ToEntityId());
-            var player = game.Players.Single(a => a.PlayerId == playerId);
-            var round = game.Rounds.Single(a => a.Id == roundId);
+            var gameDetails = await GetPlayerGameRoundAsync(gameActionDto);
 
             var list = new List<EnumAction>
             {
                 EnumAction.Pass
             };
 
-            if (round.BattleFieldClaimed && round.PlayerIdClaimedBattlefield == playerId)
+            if (gameDetails.Round.BattleFieldClaimed && gameDetails.Round.PlayerIdClaimedBattlefield == gameActionDto.PlayerId)
                 return list;
 
-            if (!round.BattleFieldClaimed)
+            if (!gameDetails.Round.BattleFieldClaimed)
                 list.Add(EnumAction.ClaimBattleField);
 
-            if (player.DicePool.Count() > 0)
+            if (gameDetails.Player.DicePool.Count() > 0)
                 list.Add(EnumAction.ResolveDice);
 
-            if (player.CardsInHand.Count() > 0)
+            if (gameDetails.Player.CardsInHand.Count() > 0)
                 list.Add(EnumAction.PlayCard);
 
-            if (player.CardsInHand.Count() > 0 && player.DicePool.Count() > 0)
+            if (gameDetails.Player.CardsInHand.Count() > 0 && gameDetails.Player.DicePool.Count() > 0)
                 list.Add(EnumAction.DiscardAndReroll);
 
-            if (player.Characters.Any(a => !a.Exausted) ||
-                player.Characters.Any(a => a.Upgrades.Any(b => b.CanBeExausted && !b.Exausted)) ||
-                player.Suports.Any(a => !a.Exausted) ||
-                player.Suports.Any(a => a.Upgrades.Any(b => b.CanBeExausted && !b.Exausted)))
+            if (gameDetails.Player.Characters.Any(a => !a.Exausted) ||
+                gameDetails.Player.Characters.Any(a => a.Upgrades.Any(b => b.CanBeExausted && !b.Exausted)) ||
+                gameDetails.Player.Suports.Any(a => !a.Exausted) ||
+                gameDetails.Player.Suports.Any(a => a.Upgrades.Any(b => b.CanBeExausted && !b.Exausted)))
                 list.Add(EnumAction.ActivateCard);
 
-            if (player.CardsInPlay.Any(a => 
-                a.Keywords.Any(b => b.EnumKeyWords == EnumKeyWords.Action || 
-                                    b.EnumKeyWords == EnumKeyWords.PowerAction)))
+            if (gameDetails.Player.CardsInPlay.Any(a => 
+                a.Effects.Any(b => b.EnumEffect == EnumEffect.Action || 
+                                    b.EnumEffect == EnumEffect.PowerAction)))
                 list.Add(EnumAction.UseCardAction);
 
             return list;
+        }
+
+        private async Task<(PlayerGame Player, Game Game, Round Round, Card Card)> GetPlayerGameRoundAsync(
+            GameActionDto gameActionDto)
+        {
+            var game = await _gameService.GetByIdAsync(gameActionDto.GameId.ToEntityId());
+            var player = game.Players.Single(a => a.PlayerId == gameActionDto.PlayerId);
+            var round = game.Rounds.Single(a => a.Id == gameActionDto.RoundId);
+            var card = gameActionDto.CardId == null
+                ? null
+                : await _cardService.GetByIdAsync(gameActionDto.CardId.Value.ToEntityId());
+            return (player, game, round, card);
+        }
+
+        public async Task<EnumMessage> PlayCardFromHandAsync(GameActionDto gameActionDto)
+        {
+            var gameDetails = await GetPlayerGameRoundAsync(gameActionDto);
+
+            var hand = gameDetails.Player.CardsInHand;
+
+            var cardPlayed = hand.First(a => a.Id == gameDetails.Card.Id);
+
+            if (cardPlayed == null)
+                return EnumMessage.CardNotInHand;
+
+            var types = cardPlayed.CardTypes.Select(a => a.Type.EnumType).ToList();
+
+            if (types.Contains(EnumType.Event) || types.Contains(EnumType.Upgrade))
+                await _playerGameService.AddLimboAsync(gameDetails.Player.PlayerId, cardPlayed);
+
+            if (types.Contains(EnumType.Support))
+                await _playerGameService.AddSuportAsync(gameDetails.Player.PlayerId, (Suport) cardPlayed);
+
+            hand.Remove(cardPlayed);
+
+            return EnumMessage.Success;
+        }
+
+        public async Task<EnumMessage> ActivateCardAsync(GameActionDto gameActionDto, int cardId)
+        {
+            var gameDetails = await GetPlayerGameRoundAsync(gameActionDto);
+
+            if (!gameDetails.Player.CardsInPlay.Any(a => a.Id == cardId))
+            {
+                return EnumMessage.CardNotInPlay;
+            }
+
+            await _playerGameService.ActivateCardAsync(gameDetails.Player.Id, gameDetails.Card);
+
+            return EnumMessage.Success;
+        }
+
+        public async Task<EnumMessage> ResolveDice(GameActionDto gameActionDto, IList<Die> dice)
+        {
+            var gameDetails = await GetPlayerGameRoundAsync(gameActionDto);
+            var dicePool = gameDetails.Player.DicePool;
+
+            var rolledDices = new List<RolledDice>();
+            if (GetRolledDice(dice, dicePool, ref rolledDices))
+                return EnumMessage.DieNotInPool;
+
+            foreach (var rolledDie in rolledDices)
+            {
+                await _playerGameService.ResolveDieAsync(gameDetails.Player.Id, rolledDie);
+            }
+
+            return EnumMessage.Success;
+        }
+
+        private bool GetRolledDice(IList<Die> dice, IList<RolledDice> dicePool,
+            ref List<RolledDice> rolledDices)
+        {
+            var diceIds = dicePool.Select(a => a.Id);
+            var resolvingDiceIds = dice.Select(a => a.Id);
+
+            foreach (var r in resolvingDiceIds)
+            {
+                if (!diceIds.Contains(r))
+                {
+                    return true;
+                }
+            }
+
+            rolledDices = dicePool.Where(a => resolvingDiceIds.Contains(a.Id)).ToList();
+            return false;
+        }
+
+        public async Task<EnumMessage> DiscardCardToReroll(GameActionDto gameActionDto, IList<Die> dice)
+        {
+            var gameDetails = await GetPlayerGameRoundAsync(gameActionDto);
+
+            if (gameDetails.Player.CardsInHand.Count == 0)
+                return EnumMessage.NotEnoughCardsToDiscard;
+
+            if (!gameDetails.Player.CardsInHand.Any(a => a.Id == gameActionDto.CardId))
+                return EnumMessage.CardNotInHand;
+
+            var dicePool = gameDetails.Player.DicePool;
+
+            var rolledDices = new List<RolledDice>();
+            if (GetRolledDice(dice, dicePool, ref rolledDices))
+                return EnumMessage.DieNotInPool;
+            
+            await _playerGameService.DiscardToRerollAsync(gameDetails.Player.Id, rolledDices);
+
+            return EnumMessage.Success;
+        }
+
+        public async Task<EnumMessage> UseCardAction(GameActionDto gameActionDto, Effect effect)
+        {
+            var gameDetails = await GetPlayerGameRoundAsync(gameActionDto);
+
+            if (!gameDetails.Card.Effects.Any(a => a.Id == effect.Id))
+                return EnumMessage.EffectNotPresentInCard;
+
+            await _playerGameService.UseCardActionAsync(gameDetails.Player.Id, gameDetails.Card, effect);
+
+            return EnumMessage.Success;
+        }
+
+        public async Task<EnumMessage> ClaimBattleField(GameActionDto gameActionDto)
+        {
+            var gameDetails = await GetPlayerGameRoundAsync(gameActionDto);
+
+            if (gameDetails.Round.BattleFieldClaimed)
+                return EnumMessage.BattleFieldAlreadyClaimed;
+
+            await _playerGameService.ClaimBattleFieldAsync(gameDetails.Player.Id, gameDetails.Round);
+
+            return EnumMessage.Success;
+        }
+
+        public async Task<EnumMessage> Pass(GameActionDto gameActionDto)
+        {
+            var gameDetails = await GetPlayerGameRoundAsync(gameActionDto);
+
+            await _playerGameService.PassAsync(gameDetails.Player.Id, gameDetails.Round);
+
+            return EnumMessage.Success;
         }
     }
 }

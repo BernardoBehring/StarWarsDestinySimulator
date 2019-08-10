@@ -7,16 +7,16 @@ namespace StarWarsDestiny.Model
     {
         public int PlayerId { get; set; }
         public Player Player { get; set; }
-        public IEnumerable<Card> CardsInHand { get; set; }
-        public IEnumerable<Card> Limbo { get; set; }
-        public IEnumerable<RolledDice> DicePool { get; set; }
+        public IList<Card> CardsInHand { get; set; }
+        public IList<Card> Limbo { get; set; }
+        public IList<RolledDice> DicePool { get; set; }
         public int Resources { get; set; }
-        public IEnumerable<Character> Characters { get; set; }
-        public IEnumerable<Suport> Suports { get; set; }
-        public IEnumerable<Card> Deck { get; set; }
+        public IList<Character> Characters { get; set; }
+        public IList<Suport> Suports { get; set; }
+        public IList<Card> Deck { get; set; }
         public int PlotId { get; set; }
         public Card Plot { get; set; }
-        public IEnumerable<Card> DiscardPile { get; set; }
-        public IEnumerable<Card> CardsInPlay { get; set; }
+        public IList<Card> DiscardPile { get; set; }
+        public IList<Card> CardsInPlay { get; set; }
     }
 }
