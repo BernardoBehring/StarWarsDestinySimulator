@@ -8,6 +8,6 @@ namespace StarWarsDestiny.Model
         public Battlefield Battlefield { get; set; }
         public SetUp SetUp { get; set; }
         public IEnumerable<Round> Rounds { get; set; }
-        public IEnumerable<PlayerGame> Players { get; set; }
+        public ICollection<PlayerGame> Players { get; set; }
     }
 }

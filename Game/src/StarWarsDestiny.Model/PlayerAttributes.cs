@@ -13,7 +13,8 @@ namespace StarWarsDestiny.Model
         public int Resources { get; set; }
         public IList<Character> Characters { get; set; }
         public IList<Suport> Suports { get; set; }
-        public IList<Card> Deck { get; set; }
+        public Deck Deck { get; set; }
+        public int DeckId { get; set; }
         public int PlotId { get; set; }
         public Card Plot { get; set; }
         public IList<Card> DiscardPile { get; set; }
