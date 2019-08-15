@@ -22,22 +22,22 @@ namespace StarWarsDestiny.Crawler.Card.Executer
 
             foreach (var letterOrNumber in lettersAndNumbers)
             {
-                var numberPage = 1;
+                var pageNumber = 1;
                 var totalPages = 1;
                 do
                 {
-                    var page = numberPage == 1
+                    var page = pageNumber == 1
                         ? webClient.DownloadString(
                             $"https://swdestinydb.com/find?q={letterOrNumber}&sort=name&view=list")
                         : webClient.DownloadString(
-                            $"https://swdestinydb.com/find?q={letterOrNumber}&sort=name&view=list&page={numberPage}");
+                            $"https://swdestinydb.com/find?q={letterOrNumber}&sort=name&view=list&page={pageNumber}");
 
                     await _extractor.ProcessPageAsync(page, null);
 
                     totalPages = _extractor.GetMaxPageNumber(page);
                     
-                    numberPage++;
-                } while (numberPage <= totalPages);
+                    pageNumber++;
+                } while (pageNumber <= totalPages);
 
             }
         }

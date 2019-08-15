@@ -41,5 +41,6 @@ namespace StarWarsDestiny.Model
         public ICollection<Keyword> Keywords { get; set; }
         public ICollection<Effect> Effects { get; set; }
         public ICollection<CardLegality> CardLegalities { get; set; }
+        public ICollection<CardDeck> CardDecks { get; set; }
     }
 }

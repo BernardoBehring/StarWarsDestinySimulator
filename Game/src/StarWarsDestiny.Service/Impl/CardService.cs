@@ -62,5 +62,12 @@ namespace StarWarsDestiny.Service.Impl
 
             return card;
         }
+
+        public async Task<Card> GetCardByDataCode(string dataCode)
+        {
+            var query = await _repository.GetAllWithParametersAsync(a => a.DataCode == dataCode);
+
+            return query.FirstOrDefault();
+        }
     }
 }

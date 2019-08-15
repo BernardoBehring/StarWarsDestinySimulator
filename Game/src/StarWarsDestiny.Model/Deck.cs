@@ -5,6 +5,7 @@ namespace StarWarsDestiny.Model
 {
     public class Deck : ModelOnlyName
     {
-        public ICollection<Card> Cards { get; set; }
+        public string Url { get; set; }
+        public ICollection<CardDeck> CardDecks { get; set; }
     }
 }

@@ -45,6 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsDestiny.Common.Util
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsDestiny.Game", "Game\src\StarWarsDestiny.Game\StarWarsDestiny.Game.csproj", "{83D8DFBE-02C9-4EDC-AB63-CC6F73971CD4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsDestiny.Crawler.Deck", "StarWarsDestiny.Crawler.Deck\StarWarsDestiny.Crawler.Deck.csproj", "{BF6F63DE-D8E1-4C7D-8871-BA8270D3186A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{83D8DFBE-02C9-4EDC-AB63-CC6F73971CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83D8DFBE-02C9-4EDC-AB63-CC6F73971CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83D8DFBE-02C9-4EDC-AB63-CC6F73971CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF6F63DE-D8E1-4C7D-8871-BA8270D3186A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF6F63DE-D8E1-4C7D-8871-BA8270D3186A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF6F63DE-D8E1-4C7D-8871-BA8270D3186A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF6F63DE-D8E1-4C7D-8871-BA8270D3186A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +136,7 @@ Global
 		{4E807267-4641-4616-B3EC-B9690B5C85EE} = {7C160108-B823-462D-BDAB-1FFB9799D800}
 		{63DE2E3A-F892-4B3A-AA9B-A43285C1D0A1} = {7C160108-B823-462D-BDAB-1FFB9799D800}
 		{83D8DFBE-02C9-4EDC-AB63-CC6F73971CD4} = {AA2CDF06-7C5F-478A-92EF-D3312E4E48C3}
+		{BF6F63DE-D8E1-4C7D-8871-BA8270D3186A} = {53195062-56D2-4DA8-A3E1-5D21912DCF00}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07A7EF35-3E46-46A8-9650-C9F774A95647}

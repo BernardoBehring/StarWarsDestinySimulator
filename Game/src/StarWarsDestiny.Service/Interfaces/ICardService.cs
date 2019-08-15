@@ -9,5 +9,6 @@ namespace StarWarsDestiny.Service.Interfaces
     {
         Task<bool> GetCardInDb(Card card);
         Task<Card> AddAsync(Card card);
+        Task<Card> GetCardByDataCode(string dataCode);
     }
 }
