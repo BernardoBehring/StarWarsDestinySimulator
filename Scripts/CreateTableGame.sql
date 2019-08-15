@@ -13,7 +13,7 @@ create table ActionPhase
 	InsertedIn datetime not null,
 	UpdatedIn datetime,
 	DeletedIn datetime,
-	GameId int not null
+	RoundId int not null
 )
 
 
@@ -330,7 +330,8 @@ create table PlayerRoundRolledDice
 	UpdatedIn datetime,
 	DeletedIn datetime,
 	PlayerRoundId int not null,
-	RolledDiceId int not null
+	DieId int not null,
+	DiceFaceId int not null
 )
 
 create table Rarity
@@ -380,6 +381,7 @@ create table SetUp
 	UpdatedIn datetime,
 	DeletedIn datetime,
 	BattlefieldChoosedId int not null,
+	GameId int not null
 )
 
 create table Turn
@@ -406,7 +408,8 @@ create table UpkeepPhase
 	Id int identity(1,1) primary key,
 	InsertedIn datetime not null,
 	UpdatedIn datetime,
-	DeletedIn datetime
+	DeletedIn datetime,
+	RoundId int not null
 )
 
 alter table CardLegality
@@ -439,12 +442,6 @@ add foreign key (DieId) references Die(id)
 alter table Card
 add foreign key (SetStarWarsId) references SetStarWars(id)
 
-alter table CharacterCard
-add foreign key (CardId) references Card(id)
-
-alter table NonCharacterCard
-add foreign key (CardId) references Card(id)
-
 alter table DiceFace
 add foreign key (DiceActionId) references DiceAction(id)
 
@@ -461,7 +458,7 @@ alter table CardType
 add foreign key (TypeId) references Type(id)
 
 alter table ActionPhase
-add foreign key(GameId) references Game(id)
+add foreign key(RoundId) references Round(id)
 
 alter table BattleField
 add foreign key(GameId) references Game(id)
@@ -524,9 +521,6 @@ alter table PlayerRoundRolledDice
 add foreign key(PlayerRoundId) references PlayerRound(id)
 
 alter table PlayerRoundRolledDice
-add foreign key(RolledDiceId) references RolledDice(id)
-
-alter table PlayerRoundRolledDice
 add foreign key(DieId) references Die(id)
 
 alter table PlayerRoundRolledDice
@@ -567,3 +561,9 @@ add foreign key(CharacterCardId) references Card(id)
 
 alter table Turn
 add foreign key (ActionPhaseId) references ActionPhase(id)
+
+alter table UpkeepPhase
+add foreign key (RoundId) references Round(id)
+
+alter table SetUp
+add foreign key (GameId) references Game(id)

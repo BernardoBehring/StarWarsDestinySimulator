@@ -46,7 +46,7 @@ namespace StarWarsDestiny.Service.Impl
             {
                 var character = player.Characters.FirstOrDefault(a => a.Id == card.Id);
                 character.Exausted = true;
-                ((Character)cardInPlay).Exausted = true;
+                ((CharacterPlayerRound)cardInPlay).Exausted = true;
                 properties.Add(nameof(PlayerGame.Characters));
             }
             else if (card.IsSuport)
@@ -64,7 +64,7 @@ namespace StarWarsDestiny.Service.Impl
                 var upgrade = upgrades.FirstOrDefault(a => a.Id == card.Id);
 
                 upgrade.Exausted = true;
-                ((Upgrade)cardInPlay).Exausted = true;
+                ((PlayerRoundCardInPlayUpgrade)cardInPlay).Exausted = true;
             }
 
             await _repository.PartialUpdateAsync(player, properties.ToArray());

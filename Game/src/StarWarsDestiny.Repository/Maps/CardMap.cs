@@ -11,7 +11,7 @@ namespace StarWarsDestiny.Repository.Maps
         {
             base.Configure(builder);
             builder.ToTable("Card");
-
+            
             builder.Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(255)
@@ -23,6 +23,8 @@ namespace StarWarsDestiny.Repository.Maps
 
             builder.Property(e => e.Text)
                 .IsUnicode(false);
+
+            builder.Property(e => e.Number);
 
             builder.Property(e => e.ArtistId);
 
@@ -51,7 +53,7 @@ namespace StarWarsDestiny.Repository.Maps
                 .IsRequired()
                 .HasMaxLength(255)
                 .IsUnicode(false);
-
+            
             builder.Property(e => e.Points);
 
             builder.Property(e => e.ElitePoints);
@@ -62,9 +64,16 @@ namespace StarWarsDestiny.Repository.Maps
 
             builder.Property(e => e.IsCharacter);
 
+            builder.Property(e => e.IsSuport);
+
+            builder.Property(e => e.IsUpgrade);
+
             builder.Property(e => e.IsUnique);
 
             builder.Property(e => e.Flavor)
+                .IsUnicode(false);
+
+            builder.Property(e => e.Image)
                 .IsUnicode(false);
 
             builder.HasOne(d => d.Affiliation)
