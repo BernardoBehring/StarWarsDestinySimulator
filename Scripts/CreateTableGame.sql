@@ -1,3 +1,21 @@
+create table Action
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	Name varchar(255) not null
+)
+
+create table ActionPhase
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	GameId int not null
+)
+
 
 create table Affiliation
 (
@@ -24,9 +42,19 @@ create table BalanceForce
 	UpdatedIn datetime,
 	DeletedIn datetime,
 	CardLegalityId int not null,
-	Points int not null,
+	Points int null,
 	ElitePoints int null,
-	Health int not null
+	Health int null
+)
+
+create table BattleField
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	GameId int not null,
+	BattlefieldCardId int not null
 )
 
 create table Card
@@ -36,6 +64,7 @@ create table Card
 	UpdatedIn datetime,
 	DeletedIn datetime,
 	Name varchar(255) not null,
+	Subtitle varchar(255) null,
 	Text varchar(max),
 	Number int not null,
 	ArtistId int null,
@@ -46,19 +75,40 @@ create table Card
 	DieId int,
 	SetStarWarsId int not null,
 	Url varchar(500) not null,
+	UrlImage varchar(500) null,
 	DataCode varchar(255) not null,
-	Cost int null,
 	Points int null,
 	ElitePoints int null,
 	Health int null,
+	Cost int null,
 	IsCharacter bit not null,
-	Image varchar(max) null,
-	Subtitle varchar(255) null,
+	IsSuport bit not null,
+	IsUpgrade bit not null,
 	IsUnique bit null,
 	Flavor varchar(max) null,
-	UrlImage varchar(500) null
+	Image varchar(max) null	
 )
 
+create table CardDeck
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	CardId int not null,
+	DeckId int not null
+)
+
+create table CardLegality
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	CardId int not null,
+	LegalityId int not null,
+	IsLegal bit not null
+)
 
 create table CardType
 (
@@ -77,6 +127,16 @@ create table Color
 	UpdatedIn datetime,
 	DeletedIn datetime,
 	Name varchar(255) not null
+)
+
+create table Deck
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	Name varchar(255) not null,
+	Url varchar(500) not null
 )
 
 create table DiceAction
@@ -111,6 +171,15 @@ create table Die
 	CardId int not null
 )
 
+create table Effect
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	Name varchar(255) not null
+)
+
 create table Faction
 (
 	Id int identity(1,1) primary key,
@@ -118,6 +187,16 @@ create table Faction
 	UpdatedIn datetime,
 	DeletedIn datetime,
 	Name varchar(255) not null
+)
+
+create table Game
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	BattleFieldId int,
+	SetUpId int
 )
 
 create table Keyword
@@ -139,6 +218,121 @@ create table Legality
 	Name varchar(255) not null
 )
 
+create table Player
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	Name varchar(255) not null
+)
+
+create table PlayerGame
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	GameId int not null,
+	PlayerId int not null,
+	DeckId int not null
+)
+
+create table PlayerGameCharacterShield
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	SetUpId int not null,
+	PlayerGameId int not null,
+	CharacterCardId int not null,
+	QtyShield int not null
+)
+
+create table PlayerGameIniciative
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	SetUpId int not null,
+	PlayerGameId int not null,
+	Iniciative int not null
+)
+
+create table PlayerRound
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	PlayerGameId int not null,
+	RoundGameId int not null,
+	Resources int not null
+)
+
+create table PlayerRoundCardInDiscard
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	PlayerRoundId int not null,
+	CardId int not null
+)
+
+create table PlayerRoundCardInHand
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	PlayerRoundId int not null,
+	CardId int not null
+)
+
+create table PlayerRoundCardInLimbo
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	PlayerRoundId int not null,
+	CardId int not null
+)
+
+create table PlayerRoundCardInPlay
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	PlayerRoundId int not null,
+	CardId int not null
+)
+
+create table PlayerRoundCardInPlayUpgrade
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	PlayerRoundCardInPlayId int not null,
+	Exausted bit not null,
+	CanBeExausted bit not null
+)
+
+create table PlayerRoundRolledDice
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	PlayerRoundId int not null,
+	RolledDiceId int not null
+)
+
 create table Rarity
 (
 	Id int identity(1,1) primary key,
@@ -146,6 +340,28 @@ create table Rarity
 	UpdatedIn datetime,
 	DeletedIn datetime,
 	Name varchar(255) not null
+)
+
+create table Round
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	UpkeepPhaseId int,
+	ActionPhaseId int,
+	BattleFieldClaimed bit not null,
+	PlayerGameIdClaimedBattlefield int
+)
+
+create table RoundGame
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	RoundId int not null,
+	GameId int not null
 )
 
 create table SetStarWars
@@ -157,6 +373,25 @@ create table SetStarWars
 	Name varchar(255) not null
 )
 
+create table SetUp
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	BattlefieldChoosedId int not null,
+)
+
+create table Turn
+(
+	Id int identity(1,1) primary key,
+	InsertedIn datetime not null,
+	UpdatedIn datetime,
+	DeletedIn datetime,
+	Number int not null,
+	ActionPhaseId int not null
+)
+
 create table Type
 (
 	Id int identity(1,1) primary key,
@@ -166,15 +401,12 @@ create table Type
 	Name varchar(255) not null
 )
 
-create table CardLegality
+create table UpkeepPhase
 (
 	Id int identity(1,1) primary key,
 	InsertedIn datetime not null,
 	UpdatedIn datetime,
-	DeletedIn datetime,
-	CardId int not null,
-	LegalityId int not null,
-	IsLegal bit not null
+	DeletedIn datetime
 )
 
 alter table CardLegality
@@ -227,3 +459,111 @@ add foreign key (CardId) references Card(id)
 
 alter table CardType
 add foreign key (TypeId) references Type(id)
+
+alter table ActionPhase
+add foreign key(GameId) references Game(id)
+
+alter table BattleField
+add foreign key(GameId) references Game(id)
+
+alter table BattleField
+add foreign key(BattlefieldCardId) references Card(id)
+
+alter table CardDeck
+add foreign key(CardId) references Card(id)
+
+alter table CardDeck
+add foreign key(DeckId) references Deck(id)
+
+alter table Game
+add foreign key(BattleFieldId) references BattleField(id)
+
+alter table Game
+add foreign key(SetUpId) references SetUp(id)
+
+alter table PlayerGame
+add foreign key(GameId) references Game(id)
+
+alter table PlayerGame
+add foreign key(PlayerId) references Player(id)
+
+alter table PlayerGame
+add foreign key(DeckId) references Deck(id)
+
+alter table PlayerRound
+add foreign key(RoundGameId) references RoundGame(id)
+
+alter table PlayerRound
+add foreign key(PlayerGameId) references PlayerGame(id)
+
+alter table PlayerRoundCardInHand
+add foreign key(PlayerRoundId) references PlayerRound(id)
+
+alter table PlayerRoundCardInHand
+add foreign key(CardId) references Card(id)
+
+alter table PlayerRoundCardInLimbo
+add foreign key(PlayerRoundId) references PlayerRound(id)
+
+alter table PlayerRoundCardInLimbo
+add foreign key(CardId) references Card(id)
+
+alter table PlayerRoundCardInPlay
+add foreign key(PlayerRoundId) references PlayerRound(id)
+
+alter table PlayerRoundCardInPlay
+add foreign key(CardId) references Card(id)
+
+alter table PlayerRoundCardInDiscard
+add foreign key(PlayerRoundId) references PlayerRound(id)
+
+alter table PlayerRoundCardInDiscard
+add foreign key(CardId) references Card(id)
+
+alter table PlayerRoundRolledDice
+add foreign key(PlayerRoundId) references PlayerRound(id)
+
+alter table PlayerRoundRolledDice
+add foreign key(RolledDiceId) references RolledDice(id)
+
+alter table PlayerRoundRolledDice
+add foreign key(DieId) references Die(id)
+
+alter table PlayerRoundRolledDice
+add foreign key(DiceFaceId) references DiceFace(id)
+
+alter table PlayerRoundCardInPlayUpgrade
+add foreign key(PlayerRoundCardInPlayId) references PlayerRoundCardInPlay(id)
+
+alter table Round
+add foreign key(UpkeepPhaseId) references UpkeepPhase(id)
+
+alter table Round
+add foreign key(ActionPhaseId) references ActionPhase(id)
+
+alter table Round
+add foreign key(PlayerGameIdClaimedBattlefield) references PlayerGame(id)
+
+alter table RoundGame
+add foreign key(RoundId) references Round(id)
+
+alter table RoundGame
+add foreign key(GameId) references Game(id)
+
+alter table PlayerGameIniciative
+add foreign key(PlayerGameId) references PlayerGame(id)
+
+alter table PlayerGameIniciative
+add foreign key(SetUpId) references SetUp(id)
+
+alter table PlayerGameCharacterShield
+add foreign key(SetUpId) references SetUp(id)
+
+alter table PlayerGameCharacterShield
+add foreign key(PlayerGameId) references PlayerGame(id)
+
+alter table PlayerGameCharacterShield
+add foreign key(CharacterCardId) references Card(id)
+
+alter table Turn
+add foreign key (ActionPhaseId) references ActionPhase(id)

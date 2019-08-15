@@ -2,11 +2,11 @@
 
 namespace StarWarsDestiny.Model
 {
-    public class Battlefield : EntityId
+    public class RoundGame : EntityId
     {
+        public int RoundId { get; set; }
         public int GameId { get; set; }
+        public Round Round { get; set; }
         public Game Game { get; set; }
-        public int BattlefieldCardId { get; set; }
-        public Card BattlefieldCard { get; set; }
     }
 }
