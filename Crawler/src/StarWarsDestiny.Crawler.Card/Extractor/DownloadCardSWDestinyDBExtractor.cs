@@ -138,7 +138,7 @@ namespace StarWarsDestiny.Crawler.Card.Extractor
                 case "Type":
                     card = await GetCardTypeAsync(card, innerText);
                     break;
-                case "EnumRarity":
+                case "Rarity":
                     card = await GetRarityIdAsync(card, innerText);
                     break;
                 case "Die":

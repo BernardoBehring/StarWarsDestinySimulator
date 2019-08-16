@@ -15,6 +15,10 @@ using StarWarsDestiny.Service.Interfaces;
 using StarWarsDestiny.Service.Impl;
 using StarWarsDestiny.Repository.Context;
 using Microsoft.Extensions.Configuration;
+using StarWarsDestiny.Crawler.Deck.Interfaces;
+using StarWarsDestiny.Crawler.Deck.Controller;
+using StarWarsDestiny.Crawler.Deck.Executor;
+using StarWarsDestiny.Crawler.Deck.Extractor;
 
 namespace StarWarsDestiny.Crawler.Deck
 {
@@ -40,16 +44,16 @@ namespace StarWarsDestiny.Crawler.Deck
             logger.LogDebug(DateTime.Now.ToLongDateString());
             logger.LogDebug("Executing");
 
-            if (args.Length > 0 && string.Equals(args[0], "/downloadCards", StringComparison.CurrentCultureIgnoreCase))
+            if (args.Length > 0 && string.Equals(args[0], "/downloadDecks", StringComparison.CurrentCultureIgnoreCase))
             {
-                var downloadCardController = serviceProvider.GetService<IDownloadCardSWDestinyDBController>();
+                var downloadCardController = serviceProvider.GetService<IDownloadDeckSWDestinyDBController>();
                 await downloadCardController.ExecuteAsync(status.Value);
             }
             else if (args.Length > 0 &&
-                     string.Equals(args[0], "/downloadCardDetails", StringComparison.CurrentCultureIgnoreCase))
+                     string.Equals(args[0], "/downloadDeckDetails", StringComparison.CurrentCultureIgnoreCase))
             {
                 var downloadCardDetailController =
-                    serviceProvider.GetService<IDownloadCardDetailSWDestinyDBController>();
+                    serviceProvider.GetService<IDownloadDeckDetailsSWDestinyDBController>();
                 await downloadCardDetailController.ExecuteAsync(status.Value);
             }
 
@@ -66,29 +70,21 @@ namespace StarWarsDestiny.Crawler.Deck
 
             return services
                     .AddLogging()
-                    //.AddScoped<IDownloadCardSWDestinyDBController, DownloadCardSWDestinyDBController>()
-                    //.AddScoped<IDownloadCardSWDestinyDBExecutor, DownloadCardSWDestinyDBExecutor>()
-                    //.AddScoped<IDownloadCardSWDestinyDBExtractor, DownloadCardSWDestinyDBExtractor>()
-                    
+                    .AddScoped<IDownloadDeckSWDestinyDBController, DownloadDeckSWDestinyDBController>()
+                    .AddScoped<IDownloadDeckSWDestinyDBExecutor, DownloadDeckSWDestinyDBExecutor>()
+                    .AddScoped<IDownloadDeckSWDestinyDBExtractor, DownloadDeckSWDestinyDBExtractor>()
+
+                    .AddScoped<IDownloadDeckDetailsSWDestinyDBController, DownloadDeckDetailsSWDestinyDBController>()
+                    .AddScoped<IDownloadDeckDetailsSWDestinyDBExecutor, DownloadDeckDetailsSWDestinyDBExecutor>()
+                    .AddScoped<IDownloadDeckDetailsSWDestinyDBExtractor, DownloadDeckDetailsSWDestinyDBExtractor>()
+
                     .AddScoped<IRequestService, RequestService>()
                     .AddScoped<IRobotService, RobotService>()
                     .AddScoped<ISiteService, SiteService>()
                     .AddScoped<IStatusService, StatusService>()
 
-                    .AddScoped<IAffiliationService, AffiliationService>()
-                    .AddScoped<IArtistService, ArtistService>()
-                    .AddScoped<IBalanceForceService, BalanceForceService>()
-                    .AddScoped<ICardLegalityService, CardLegalityService>()
                     .AddScoped<ICardService, CardService>()
-                    .AddScoped<IColorService, ColorService>()
-                    .AddScoped<IDiceActionService, DiceActionService>()
-                    .AddScoped<IDiceFaceService, DiceFaceService>()
-                    .AddScoped<IDieService, DieService>()
-                    .AddScoped<IFactionService, FactionService>()
-                    .AddScoped<ILegalityService, LegalityService>()
-                    .AddScoped<IRarityService, RarityService>()
-                    .AddScoped<ISetStarWarsService, SetStarWarsService>()
-                    .AddScoped<ITypeService, TypeService>()
+                    .AddScoped<IDeckService, DeckService>()
                 ;
         }
     }

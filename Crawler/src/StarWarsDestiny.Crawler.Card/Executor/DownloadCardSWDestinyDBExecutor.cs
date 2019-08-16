@@ -18,72 +18,50 @@ namespace StarWarsDestiny.Crawler.Card.Executer
         
         public async Task ExecuteAsync()
         {
-            var lettersAndNumbers = LettersAndNumbers();
+            var sets = Sets();
 
-            foreach (var letterOrNumber in lettersAndNumbers)
+            foreach (var set in sets)
             {
-                var pageNumber = 1;
-                var totalPages = 1;
-                do
-                {
-                    var page = pageNumber == 1
-                        ? webClient.DownloadString(
-                            $"https://swdestinydb.com/find?q={letterOrNumber}&sort=name&view=list")
-                        : webClient.DownloadString(
-                            $"https://swdestinydb.com/find?q={letterOrNumber}&sort=name&view=list&page={pageNumber}");
+                //var pageNumber = 1;
+                //var totalPages = 1;
+                //do
+                //{
+                    var page = 
+                        //    pageNumber == 1
+                        //? 
+                                webClient.DownloadString($"https://swdestinydb.com/set/{set}")
+                        //: webClient.DownloadString(
+                        //    $"https://swdestinydb.com/find?q={set}&sort=name&view=list&page={pageNumber}")
+                    ;
 
                     await _extractor.ProcessPageAsync(page, null);
 
-                    totalPages = _extractor.GetMaxPageNumber(page);
+                //    totalPages = _extractor.GetMaxPageNumber(page);
                     
-                    pageNumber++;
-                } while (pageNumber <= totalPages);
+                //    pageNumber++;
+                //} while (pageNumber <= totalPages);
 
             }
         }
 
-        private static List<char> LettersAndNumbers()
+        private static List<string> Sets()
         {
-            var letters = new List<char>
+            var sets = new List<string>
             {
-                'a',
-                'b',
-                'c',
-                'd',
-                'e',
-                'f',
-                'g',
-                'h',
-                'i',
-                'j',
-                'k',
-                'l',
-                'm',
-                'n',
-                'o',
-                'p',
-                'q',
-                'r',
-                's',
-                't',
-                'u',
-                'v',
-                'w',
-                'x',
-                'y',
-                'z',
-                '0',
-                '1',
-                '2',
-                '3',
-                '4',
-                '5',
-                '6',
-                '7',
-                '8',
-                '9'
+                "AW",
+                "SoR",
+                "EaW",
+                "TPG",
+                "LEG",
+                "RIV",
+                "WotF",
+                "AtG",
+                "CONV",
+                "AoN",
+                "SoH",
+                "CM"
             };
-            return letters;
+            return sets;
         }
     }
 }

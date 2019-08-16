@@ -21,8 +21,8 @@ namespace StarWarsDestiny.Repository.Maps
                 .HasForeignKey(d => d.BattlefieldCardId);
 
             builder.HasOne(d => d.Game)
-                .WithMany(p => p.Battlefields)
-                .HasForeignKey(d => d.GameId);
+                .WithOne(p => p.Battlefield)
+                .HasForeignKey<Battlefield>(d => d.GameId);
         }
     }
 }

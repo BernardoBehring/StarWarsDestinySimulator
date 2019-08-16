@@ -10,29 +10,29 @@ using StarWarsDestiny.Common.Util;
 
 namespace StarWarsDestiny.Service.Impl
 {
-    public class PlayerGameService : ReadWriteService<PlayerGame, StarWarsDestinyContext>, IPlayerGameService
+    public class PlayerRoundService : ReadWriteService<PlayerRound, StarWarsDestinyContext>, IPlayerRoundService
     {
-        private readonly IReadWriteRepository<PlayerGame, StarWarsDestinyContext> _repository;
+        private readonly IReadWriteRepository<PlayerRound, StarWarsDestinyContext> _repository;
 
-        public PlayerGameService(IReadWriteRepository<PlayerGame, StarWarsDestinyContext> repository) : base(repository)
+        public PlayerRoundService(IReadWriteRepository<PlayerRound, StarWarsDestinyContext> repository) : base(repository)
         {
             _repository = repository;
         }
 
-        public async Task AddSuportAsync(int playerId, Suport suport)
+        public async Task AddSuportAsync(int playerId, Card suport)
         {
             var player = await _repository.GetByIdAsync(playerId.ToEntityId());
-            player.Suports.Add(suport);
+            //player.CardsInPlay.Add(suport);
 
-            await _repository.PartialUpdateAsync(player, new[] {nameof(PlayerGame.Suports)});
+            await _repository.PartialUpdateAsync(player, new[] {nameof(PlayerRound.CardsInPlay) });
         }
 
         public async Task AddLimboAsync(int playerId, Card card)
         {
             var player = await _repository.GetByIdAsync(playerId.ToEntityId());
-            player.Limbo.Add(card);
+            //player.Limbo.Add(card);
 
-            await _repository.PartialUpdateAsync(player, new[] { nameof(PlayerGame.Limbo) });
+            await _repository.PartialUpdateAsync(player, new[] { nameof(PlayerRound.Limbo) });
         }
 
         public async Task ActivateCardAsync(int playerId, Card card)
@@ -44,38 +44,38 @@ namespace StarWarsDestiny.Service.Impl
 
             if (card.IsCharacter)
             {
-                var character = player.Characters.FirstOrDefault(a => a.Id == card.Id);
-                character.Exausted = true;
-                ((CharacterPlayerRound)cardInPlay).Exausted = true;
-                properties.Add(nameof(PlayerGame.Characters));
+                //var character = player.Characters.FirstOrDefault(a => a.Id == card.Id);
+                //character.Exausted = true;
+                //((CharacterPlayerRound)cardInPlay).Exausted = true;
+                //properties.Add(nameof(PlayerRound.Characters));
             }
             else if (card.IsSuport)
             {
-                var suport = player.Suports.FirstOrDefault(a => a.Id == card.Id);
-                suport.Exausted = true;
-                ((Suport)cardInPlay).Exausted = true;
-                properties.Add(nameof(PlayerGame.Suports));
+                //var suport = player.Suports.FirstOrDefault(a => a.Id == card.Id);
+                //suport.Exausted = true;
+                //((Suport)cardInPlay).Exausted = true;
+                //properties.Add(nameof(PlayerRound.Suports));
             }
             else if (card.IsUpgrade)
             {
-                var upgrades = player.Characters.SelectMany(a => a.Upgrades).ToList();
-                upgrades.AddRange(player.Suports.SelectMany(a => a.Upgrades));
+                //var upgrades = player.Characters.SelectMany(a => a.Upgrades).ToList();
+                //upgrades.AddRange(player.Suports.SelectMany(a => a.Upgrades));
 
-                var upgrade = upgrades.FirstOrDefault(a => a.Id == card.Id);
+                //var upgrade = upgrades.FirstOrDefault(a => a.Id == card.Id);
 
-                upgrade.Exausted = true;
-                ((PlayerRoundCardInPlayUpgrade)cardInPlay).Exausted = true;
+                //upgrade.Exausted = true;
+                //((PlayerRoundCardInPlayUpgrade)cardInPlay).Exausted = true;
             }
 
             await _repository.PartialUpdateAsync(player, properties.ToArray());
         }
 
-        public async Task ResolveDieAsync(int playerId, RolledDice rolledDice)
+        public async Task ResolveDieAsync(int playerId, PlayerRoundRolledDice rolledDice)
         {
             var player = await _repository.GetByIdAsync(playerId.ToEntityId());
         }
 
-        public async Task DiscardToRerollAsync(int playerId, IList<RolledDice> dice)
+        public async Task DiscardToRerollAsync(int playerId, IList<PlayerRoundRolledDice> dice)
         {
             var player = await _repository.GetByIdAsync(playerId.ToEntityId());
         }
@@ -88,7 +88,6 @@ namespace StarWarsDestiny.Service.Impl
         public async Task ClaimBattleFieldAsync(int playerId, Round round)
         {
             var player = await _repository.GetByIdAsync(playerId.ToEntityId());
-
 
         }
 

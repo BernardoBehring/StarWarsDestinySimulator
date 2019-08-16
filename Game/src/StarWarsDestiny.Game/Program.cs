@@ -28,7 +28,7 @@ namespace StarWarsDestiny.Game
 
             var gameService = serviceProvider.GetService<IGameService>();
             var playerService = serviceProvider.GetService<IPlayerService>();
-            var playerGameService = serviceProvider.GetService<IPlayerGameService>();
+            var playerGameService = serviceProvider.GetService<IPlayerRoundService>();
             var deckService = serviceProvider.GetService<IDeckService>();
 
             var game = new Model.Game
@@ -65,8 +65,8 @@ namespace StarWarsDestiny.Game
                 GameId = game.Id
             };
 
-            game.Players.Add(player1Game);
-            game.Players.Add(player2Game);
+            //game.Players.Add(player1Game);
+            //game.Players.Add(player2Game);
 
             var listDecks = await deckService.GetAllAsync();
 

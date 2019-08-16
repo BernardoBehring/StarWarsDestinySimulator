@@ -19,7 +19,6 @@ using StarWarsDestiny.Service.Interfaces;
 using StarWarsDestiny.Service.Impl;
 using StarWarsDestiny.Repository.Context;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 
 namespace StarWarsDestiny.Crawler.Card
 {

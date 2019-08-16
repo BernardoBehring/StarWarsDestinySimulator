@@ -11,6 +11,5 @@ namespace StarWarsDestiny.Model
         public SetUp SetUp { get; set; }
         public IEnumerable<RoundGame> Rounds { get; set; }
         public ICollection<PlayerGame> PlayerGames { get; set; }
-        public ICollection<Battlefield> Battlefields { get; set; }
     }
 }
