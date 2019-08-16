@@ -1,4 +1,5 @@
-﻿using StarWarsDestiny.Common.Model;
+﻿using System.Collections.Generic;
+using StarWarsDestiny.Common.Model;
 
 namespace StarWarsDestiny.Model
 {
@@ -11,5 +12,6 @@ namespace StarWarsDestiny.Model
         public int DieId { get; set; }
         public DiceAction DiceAction { get; set; }
         public Die Die { get; set; }
+        public ICollection<PlayerRoundRolledDice> PlayerRoundRolledDices { get; set; }
     }
 }

@@ -567,3 +567,6 @@ add foreign key (RoundId) references Round(id)
 
 alter table SetUp
 add foreign key (GameId) references Game(id)
+
+alter table SetUp
+add foreign key (BattlefieldChoosedId) references Battlefield(id)

@@ -29,13 +29,11 @@ namespace StarWarsDestiny.Repository.Maps
 
             builder.HasOne(d => d.DiceAction)
                 .WithMany(p => p.DiceFaces)
-                .HasForeignKey(d => d.DiceActionId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.DiceActionId);
 
             builder.HasOne(d => d.Die)
                 .WithMany(p => p.DiceFaces)
-                .HasForeignKey(d => d.DieId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.DieId);
         }
     }
 }

@@ -20,13 +20,11 @@ namespace StarWarsDestiny.Crawler.Repository.Maps
 
             builder.HasOne(d => d.RobotType)
                 .WithMany(p => p.Robots)
-                .HasForeignKey(d => d.RobotTypeId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.RobotTypeId);
 
             builder.HasOne(d => d.Site)
                 .WithMany(p => p.Robots)
-                .HasForeignKey(d => d.SiteId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.SiteId);
         }
     }
 }

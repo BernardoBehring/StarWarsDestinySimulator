@@ -43,5 +43,10 @@ namespace StarWarsDestiny.Model
         public ICollection<CardLegality> CardLegalities { get; set; }
         public ICollection<CardDeck> CardDecks { get; set; }
         public ICollection<Battlefield> Battlefields { get; set; }
+        public ICollection<PlayerGameCharacterShield> PlayerGameCharacterShields { get; set; }
+        public ICollection<PlayerRoundCardInDiscard> PlayerRoundCardInDiscards { get; set; }
+        public ICollection<PlayerRoundCardInHand> PlayerRoundCardInHands { get; set; }
+        public ICollection<PlayerRoundCardInLimbo> PlayerRoundCardInLimbo { get; set; }
+        public ICollection<PlayerRoundCardInPlay> PlayerRoundCardsInPlay { get; set; }
     }
 }

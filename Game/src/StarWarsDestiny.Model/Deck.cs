@@ -7,5 +7,6 @@ namespace StarWarsDestiny.Model
     {
         public string Url { get; set; }
         public ICollection<CardDeck> CardDecks { get; set; }
+        public ICollection<PlayerGame> PlayerGames { get; set; }
     }
 }

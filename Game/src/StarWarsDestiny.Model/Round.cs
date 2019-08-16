@@ -1,4 +1,5 @@
-﻿using StarWarsDestiny.Common.Model;
+﻿using System.Collections.Generic;
+using StarWarsDestiny.Common.Model;
 
 namespace StarWarsDestiny.Model
 {
@@ -11,5 +12,6 @@ namespace StarWarsDestiny.Model
         public UpkeepPhase UpkeepPhase { get; set; }
         public ActionPhase ActionPhase { get; set; }
         public PlayerGame PlayerGameClaimedBattleField { get; set; }
+        public ICollection<RoundGame> RoundGames { get; set; }
     }
 }

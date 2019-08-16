@@ -20,13 +20,11 @@ namespace StarWarsDestiny.Repository.Maps
 
             builder.HasOne(d => d.Card)
                 .WithMany(p => p.CardTypes)
-                .HasForeignKey(d => d.CardId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.CardId);
 
             builder.HasOne(d => d.Type)
                 .WithMany(p => p.CardTypes)
-                .HasForeignKey(d => d.TypeId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.TypeId);
         }
     }
 }

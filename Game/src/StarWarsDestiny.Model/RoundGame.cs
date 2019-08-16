@@ -1,4 +1,5 @@
-﻿using StarWarsDestiny.Common.Model;
+﻿using System.Collections.Generic;
+using StarWarsDestiny.Common.Model;
 
 namespace StarWarsDestiny.Model
 {
@@ -8,5 +9,6 @@ namespace StarWarsDestiny.Model
         public int GameId { get; set; }
         public Round Round { get; set; }
         public Game Game { get; set; }
+        public ICollection<PlayerRound> PlayerRounds { get; set; }
     }
 }

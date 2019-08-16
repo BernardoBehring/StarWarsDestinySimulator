@@ -78,18 +78,15 @@ namespace StarWarsDestiny.Repository.Maps
 
             builder.HasOne(d => d.Affiliation)
                 .WithMany(p => p.Cards)
-                .HasForeignKey(d => d.AffiliationId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.AffiliationId);
 
             builder.HasOne(d => d.Artist)
                 .WithMany(p => p.Cards)
-                .HasForeignKey(d => d.ArtistId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.ArtistId);
 
             builder.HasOne(d => d.Color)
                 .WithMany(p => p.Cards)
-                .HasForeignKey(d => d.ColorId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.ColorId);
 
             builder.HasOne(d => d.Die)
                 .WithOne(p => p.Card)
@@ -97,18 +94,15 @@ namespace StarWarsDestiny.Repository.Maps
 
             builder.HasOne(d => d.Faction)
                 .WithMany(p => p.Cards)
-                .HasForeignKey(d => d.FactionId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.FactionId);
 
             builder.HasOne(d => d.Rarity)
                 .WithMany(p => p.Cards)
-                .HasForeignKey(d => d.RarityId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.RarityId);
 
             builder.HasOne(d => d.SetStarWars)
                 .WithMany(p => p.Cards)
-                .HasForeignKey(d => d.SetStarWarsId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.SetStarWarsId);
         }
     }
 }

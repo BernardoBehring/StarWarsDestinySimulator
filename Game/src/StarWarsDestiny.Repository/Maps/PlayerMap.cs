@@ -5,12 +5,12 @@ using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Repository.Maps
 {
-    public class RarityMap : EntityIdMap<Rarity>, IEntityTypeConfiguration<Rarity>
+    public class PlayerMap : EntityIdMap<Player>, IEntityTypeConfiguration<Player>
     {
-        public new void Configure(EntityTypeBuilder<Rarity> builder)
+        public new void Configure(EntityTypeBuilder<Player> builder)
         {
             base.Configure(builder);
-            builder.ToTable("Rarity");
+            builder.ToTable("Player");
 
             builder.Property(e => e.Name)
                 .IsRequired()
