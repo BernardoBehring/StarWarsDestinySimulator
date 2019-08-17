@@ -8,13 +8,13 @@ namespace StarWarsDestiny.Service.Interfaces
 {
     public interface IPlayerRoundService : IReadWriteService<PlayerRound, StarWarsDestinyContext>
     {
-        Task AddSuportAsync(int playerId, Card suport);
-        Task AddLimboAsync(int playerId, Card card);
-        Task ActivateCardAsync(int playerId, Card card);
-        Task ResolveDieAsync(int playerId, PlayerRoundRolledDice rolledDice);
-        Task DiscardToRerollAsync(int playerId, IList<PlayerRoundRolledDice> dice);
-        Task UseCardActionAsync(int playerId, Card card, Effect effect);
-        Task ClaimBattleFieldAsync(int playerId, Round round);
-        Task PassAsync(int playerId, Round round);
+        Task AddSuportAsync(PlayerRound playerRound, Card suport);
+        Task AddLimboAsync(PlayerRound playerRound, Card card);
+        Task ActivateCardAsync(PlayerRound playerRound, Card card);
+        Task ResolveDieAsync(PlayerRound playerRound, PlayerRoundRolledDice rolledDice);
+        Task DiscardToRerollAsync(PlayerRound playerRound, IList<PlayerRoundRolledDice> dice, Card card);
+        Task UseCardActionAsync(PlayerRound playerRound, Card card, Effect effect);
+        Task ClaimBattleFieldAsync(PlayerRound playerRound);
+        Task PassAsync(PlayerRound playerRound);
     }
 }

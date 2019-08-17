@@ -2,8 +2,8 @@
 {
     public enum EnumAffiliation
     {
-        Neutral = 1,
-        Villain = 2,
-        Hero = 3
+        Villain = 1,
+        Hero = 2,
+        Neutral = 3
     }
 }

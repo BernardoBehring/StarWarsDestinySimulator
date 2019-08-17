@@ -2,9 +2,9 @@
 {
     public enum EnumColor
     {
-        Yellow = 1,
-        Red = 2,
-        Blue = 3,
-        Gray = 4
+        Red = 1,
+        Blue = 2,
+        Gray = 3,
+        Yellow = 4
     }
 }

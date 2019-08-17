@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StarWarsDestiny.Repository\StarWarsDestiny.Repository.csproj" />
-    <ProjectReference Include="..\StarWarsDestiny.Service\StarWarsDestiny.Service.csproj" />
+    <ProjectReference Include="..\..\..\Structure\src\StarWarsDestiny.Model\StarWarsDestiny.Model.csproj" />
+    <ProjectReference Include="..\..\..\Structure\src\StarWarsDestiny.Service\StarWarsDestiny.Service.csproj" />
   </ItemGroup>
 
 </Project>

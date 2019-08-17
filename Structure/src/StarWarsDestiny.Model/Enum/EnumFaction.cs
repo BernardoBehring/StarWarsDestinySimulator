@@ -2,9 +2,9 @@
 {
     public enum EnumFaction
     {
-        Rogue = 1,
-        Command = 2,
-        Force = 3,
-        General = 4
+        Command = 1,
+        Force = 2,
+        General = 3,
+        Rogue = 4
     }
 }

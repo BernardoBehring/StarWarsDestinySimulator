@@ -4,14 +4,14 @@ using StarWarsDestiny.Common.Repository.Impl;
 using StarWarsDestiny.Common.Repository.Interfaces;
 using StarWarsDestiny.Common.Service.Impl;
 using StarWarsDestiny.Common.Service.Interfaces;
+using StarWarsDestiny.Common.Util.Extensions;
+using StarWarsDestiny.Model;
 using StarWarsDestiny.Repository.Context;
 using StarWarsDestiny.Service.Impl;
 using StarWarsDestiny.Service.Interfaces;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using StarWarsDestiny.Common.Util;
-using StarWarsDestiny.Model;
 
 namespace StarWarsDestiny.Game
 {
@@ -65,8 +65,8 @@ namespace StarWarsDestiny.Game
                 GameId = game.Id
             };
 
-            //game.Players.Add(player1Game);
-            //game.Players.Add(player2Game);
+            game.PlayerGames.Add(player1Game);
+            game.PlayerGames.Add(player2Game);
 
             var listDecks = await deckService.GetAllAsync();
 

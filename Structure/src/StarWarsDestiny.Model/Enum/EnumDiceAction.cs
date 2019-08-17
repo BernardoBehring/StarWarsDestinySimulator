@@ -5,14 +5,14 @@ namespace StarWarsDestiny.Model.Enum
     public enum EnumDiceAction
     {
         Ranged = 1,
-        Disrupt = 2,
-        Resource = 3,
-        Blank = 4,
-        Melee = 5,
-        Focus = 6,
-        Special = 7,
-        Indirect = 8,
-        Shield = 9,
-        Discard = 10
+        Focus = 2,
+        Discard = 3,
+        Resource = 4,
+        Blank = 5,
+        Melee = 6,
+        Disrupt = 7,
+        Shield = 8,
+        Special = 9,
+        Indirect = 10
     }
 }

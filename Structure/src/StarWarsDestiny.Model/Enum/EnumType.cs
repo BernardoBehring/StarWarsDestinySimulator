@@ -2,12 +2,12 @@
 {
     public enum EnumType
     {
-        Event = 1,
-        Character = 2,
+        Character = 1,
+        Support = 2,
         Upgrade = 3,
-        Support = 4,
-        Plot = 5,
-        Battlefield = 6,
+        Event = 4,
+        Battlefield = 5,
+        Plot = 6,
         Downgrade = 7
     }
 }

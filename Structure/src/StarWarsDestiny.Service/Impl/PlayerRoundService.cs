@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using StarWarsDestiny.Common.Repository.Interfaces;
 using StarWarsDestiny.Common.Service.Impl;
@@ -6,95 +7,92 @@ using StarWarsDestiny.Model;
 using StarWarsDestiny.Repository.Context;
 using StarWarsDestiny.Service.Interfaces;
 using System.Threading.Tasks;
-using StarWarsDestiny.Common.Util.Extensions;
 
 namespace StarWarsDestiny.Service.Impl
 {
     public class PlayerRoundService : ReadWriteService<PlayerRound, StarWarsDestinyContext>, IPlayerRoundService
     {
         private readonly IReadWriteRepository<PlayerRound, StarWarsDestinyContext> _repository;
+        private readonly IPlayerRoundCardInPlayService _playerRoundCardInPlayService;
+        private readonly IPlayerRoundCardInHandService _playerRoundCardInHandService;
+        private readonly IPlayerRoundCardInLimboService _playerRoundCardInLimboService;
 
-        public PlayerRoundService(IReadWriteRepository<PlayerRound, StarWarsDestinyContext> repository) : base(repository)
+        public PlayerRoundService(IReadWriteRepository<PlayerRound, StarWarsDestinyContext> repository,
+            IPlayerRoundCardInPlayService playerRoundCardInPlayService, 
+            IPlayerRoundCardInHandService playerRoundCardInHandService,
+            IPlayerRoundCardInLimboService playerRoundCardInLimboService) : base(repository)
         {
             _repository = repository;
+            _playerRoundCardInPlayService = playerRoundCardInPlayService;
+            _playerRoundCardInHandService = playerRoundCardInHandService;
+            _playerRoundCardInLimboService = playerRoundCardInLimboService;
         }
 
-        public async Task AddSuportAsync(int playerId, Card suport)
+        public async Task AddSuportAsync(PlayerRound playerRound, Card suport)
         {
-            var player = await _repository.GetByIdAsync(playerId.ToEntityId());
-            //player.CardsInPlay.Add(suport);
+            var cardInPlay = new PlayerRoundCardInPlay
+            {
+                CardId = suport.Id,
+                InsertedIn = DateTime.Now,
+                Exausted = false,
+                PlayerRoundId = playerRound.Id
+            };
 
-            await _repository.PartialUpdateAsync(player, new[] {nameof(PlayerRound.CardsInPlay) });
+            await _playerRoundCardInPlayService.CreateAsync(cardInPlay);
+
+            playerRound.CardsInPlay.Add(cardInPlay);
+
+            await RemoveCardFromHand(playerRound, suport);
         }
 
-        public async Task AddLimboAsync(int playerId, Card card)
+        private async Task RemoveCardFromHand(PlayerRound playerRound, Card card)
         {
-            var player = await _repository.GetByIdAsync(playerId.ToEntityId());
-            //player.Limbo.Add(card);
+            var cardInHand = playerRound.CardsInHand.First(a => a.CardId == card.Id);
 
-            await _repository.PartialUpdateAsync(player, new[] { nameof(PlayerRound.Limbo) });
+            await _playerRoundCardInHandService.RemoveCardFromHand(cardInHand);
         }
 
-        public async Task ActivateCardAsync(int playerId, Card card)
+        public async Task AddLimboAsync(PlayerRound playerRound, Card card)
         {
-            var player = await _repository.GetByIdAsync(playerId.ToEntityId());
+            var cardInLimbo = await _playerRoundCardInLimboService.AddLimboAsync(playerRound, card);
+
+            playerRound.Limbo.Add(cardInLimbo);
+
+            await RemoveCardFromHand(playerRound, card);
+        }
+
+        public async Task ActivateCardAsync(PlayerRound playerRound, Card card)
+        {
             var properties = new List<string>();
 
-            var cardInPlay = player.CardsInPlay.FirstOrDefault(a => a.Id == card.Id);
+            var cardInPlay = playerRound.CardsInPlay.FirstOrDefault(a => a.Id == card.Id);
 
-            if (card.IsCharacter)
-            {
-                //var character = player.Characters.FirstOrDefault(a => a.Id == card.Id);
-                //character.Exausted = true;
-                //((CharacterPlayerRound)cardInPlay).Exausted = true;
-                //properties.Add(nameof(PlayerRound.Characters));
-            }
-            else if (card.IsSuport)
-            {
-                //var suport = player.Suports.FirstOrDefault(a => a.Id == card.Id);
-                //suport.Exausted = true;
-                //((Suport)cardInPlay).Exausted = true;
-                //properties.Add(nameof(PlayerRound.Suports));
-            }
-            else if (card.IsUpgrade)
-            {
-                //var upgrades = player.Characters.SelectMany(a => a.Upgrades).ToList();
-                //upgrades.AddRange(player.Suports.SelectMany(a => a.Upgrades));
-
-                //var upgrade = upgrades.FirstOrDefault(a => a.Id == card.Id);
-
-                //upgrade.Exausted = true;
-                //((PlayerRoundCardInPlayUpgrade)cardInPlay).Exausted = true;
-            }
-
-            await _repository.PartialUpdateAsync(player, properties.ToArray());
+            await _playerRoundCardInPlayService.ActivateCardAsync(cardInPlay);
         }
 
-        public async Task ResolveDieAsync(int playerId, PlayerRoundRolledDice rolledDice)
+        public async Task ResolveDieAsync(PlayerRound playerRound, PlayerRoundRolledDice rolledDice)
         {
-            var player = await _repository.GetByIdAsync(playerId.ToEntityId());
+            throw new NotImplementedException();
         }
 
-        public async Task DiscardToRerollAsync(int playerId, IList<PlayerRoundRolledDice> dice)
+        public async Task DiscardToRerollAsync(PlayerRound playerRound, IList<PlayerRoundRolledDice> dice, Card card)
         {
-            var player = await _repository.GetByIdAsync(playerId.ToEntityId());
+            throw new NotImplementedException();
         }
 
-        public async Task UseCardActionAsync(int playerId, Card card, Effect effect)
+        public async Task UseCardActionAsync(PlayerRound playerRound, Card card, Effect effect)
         {
-            var player = await _repository.GetByIdAsync(playerId.ToEntityId());
+            throw new NotImplementedException();
         }
 
-        public async Task ClaimBattleFieldAsync(int playerId, Round round)
+        public async Task ClaimBattleFieldAsync(PlayerRound playerRound)
         {
-            var player = await _repository.GetByIdAsync(playerId.ToEntityId());
-
+            throw new NotImplementedException();
         }
 
-        public async Task PassAsync(int playerId, Round round)
+        public async Task PassAsync(PlayerRound playerRound)
         {
-            var player = await _repository.GetByIdAsync(playerId.ToEntityId());
-
+            throw new NotImplementedException();
         }
     }
 }
