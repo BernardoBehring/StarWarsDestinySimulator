@@ -12,8 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\src\StarWarsDestiny.Common.Service\StarWarsDestiny.Common.Service.csproj" />
-    <ProjectReference Include="..\..\..\Game\src\StarWarsDestiny.Repository\StarWarsDestiny.Repository.csproj" />
-    <ProjectReference Include="..\..\..\Game\src\StarWarsDestiny.Service\StarWarsDestiny.Service.csproj" />
+    <ProjectReference Include="..\..\..\Structure\src\StarWarsDestiny.Service\StarWarsDestiny.Service.csproj" />
     <ProjectReference Include="..\StarWarsDestiny.Crawler.Base\StarWarsDestiny.Crawler.Base.csproj" />
     <ProjectReference Include="..\StarWarsDestiny.Crawler.Model\StarWarsDestiny.Crawler.Model.csproj" />
     <ProjectReference Include="..\StarWarsDestiny.Crawler.Repository\StarWarsDestiny.Crawler.Repository.csproj" />

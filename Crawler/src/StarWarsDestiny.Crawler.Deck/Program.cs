@@ -14,7 +14,6 @@ using StarWarsDestiny.Common.Service.Impl;
 using StarWarsDestiny.Service.Interfaces;
 using StarWarsDestiny.Service.Impl;
 using StarWarsDestiny.Repository.Context;
-using Microsoft.Extensions.Configuration;
 using StarWarsDestiny.Crawler.Deck.Interfaces;
 using StarWarsDestiny.Crawler.Deck.Controller;
 using StarWarsDestiny.Crawler.Deck.Executor;
@@ -24,7 +23,6 @@ namespace StarWarsDestiny.Crawler.Deck
 {
     public class Program
     {
-        private static IConfiguration _configuration;
         public static async Task Main(string[] args)
         {
             var serviceProvider = GetServiceCollection()

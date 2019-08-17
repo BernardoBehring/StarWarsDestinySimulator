@@ -16,9 +16,17 @@ namespace StarWarsDestiny.Common.Repository.Impl
             repository = new Repository<TDbContext>(context);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync(params string[] include)
         {
             var query = repository.GetQueryable<T>();
+
+            if (include != null)
+            {
+                foreach (var inc in include)
+                {
+                    query = query.Include(inc);
+                }
+            }
 
             return await query.ToListAsync();
         }

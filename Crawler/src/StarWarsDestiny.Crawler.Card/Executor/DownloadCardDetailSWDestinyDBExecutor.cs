@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using StarWarsDestiny.Crawler.Card.Interfaces;
 using StarWarsDestiny.Service.Interfaces;
-
 
 namespace StarWarsDestiny.Crawler.Card.Executer
 {
