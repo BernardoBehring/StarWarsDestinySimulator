@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GraphQL" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\StarWarsDestiny.Common.Model\StarWarsDestiny.Common.Model.csproj" />
   </ItemGroup>
 

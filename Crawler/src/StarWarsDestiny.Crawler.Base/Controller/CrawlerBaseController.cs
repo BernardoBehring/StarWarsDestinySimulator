@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using StarWarsDestiny.Common.Util;
 using StarWarsDestiny.Crawler.Base.Interfaces;
+using StarWarsDestiny.Common.Util.Extensions;
 
 namespace StarWarsDestiny.Crawler.Base.Controller
 {

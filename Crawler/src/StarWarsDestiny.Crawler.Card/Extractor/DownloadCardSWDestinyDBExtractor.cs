@@ -1,5 +1,4 @@
 ﻿using HtmlAgilityPack;
-using StarWarsDestiny.Common.Util;
 using StarWarsDestiny.Crawler.Card.Interfaces;
 using StarWarsDestiny.Model;
 using StarWarsDestiny.Service.Interfaces;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using StarWarsDestiny.Model.Enum;
 using CardSWD = StarWarsDestiny.Model.Card;
+using StarWarsDestiny.Common.Util.Extensions;
 
 namespace StarWarsDestiny.Crawler.Card.Extractor
 {

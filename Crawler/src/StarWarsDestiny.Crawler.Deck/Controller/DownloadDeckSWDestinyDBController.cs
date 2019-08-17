@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using StarWarsDestiny.Common.Util;
+using StarWarsDestiny.Common.Util.Extensions;
 using StarWarsDestiny.Crawler.Base.Controller;
 using StarWarsDestiny.Crawler.Deck.Interfaces;
 using StarWarsDestiny.Crawler.Model.Enum;

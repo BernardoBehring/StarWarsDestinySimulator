@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
-using StarWarsDestiny.Common.Util;
+using StarWarsDestiny.Common.Util.Extensions;
 using StarWarsDestiny.Crawler.Card.Interfaces;
 using StarWarsDestiny.Model;
 using StarWarsDestiny.Service.Interfaces;

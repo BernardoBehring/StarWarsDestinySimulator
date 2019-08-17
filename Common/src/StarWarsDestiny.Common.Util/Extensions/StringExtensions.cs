@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace StarWarsDestiny.Common.Util
+namespace StarWarsDestiny.Common.Util.Extensions
 {
     public static class StringExtensions
     {

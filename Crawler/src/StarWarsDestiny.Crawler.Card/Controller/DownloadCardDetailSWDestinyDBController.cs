@@ -2,8 +2,8 @@
 using StarWarsDestiny.Crawler.Model.Enum;
 using StarWarsDestiny.Crawler.Service.Interfaces;
 using System.Threading.Tasks;
-using StarWarsDestiny.Common.Util;
 using StarWarsDestiny.Crawler.Card.Interfaces;
+using StarWarsDestiny.Common.Util.Extensions;
 
 namespace StarWarsDestiny.Crawler.Card.Controller
 {

@@ -6,7 +6,7 @@ using StarWarsDestiny.Model;
 using StarWarsDestiny.Repository.Context;
 using StarWarsDestiny.Service.Interfaces;
 using System.Threading.Tasks;
-using StarWarsDestiny.Common.Util;
+using StarWarsDestiny.Common.Util.Extensions;
 
 namespace StarWarsDestiny.Service.Impl
 {

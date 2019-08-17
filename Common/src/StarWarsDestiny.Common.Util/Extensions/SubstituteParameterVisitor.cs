@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace StarWarsDestiny.Common.Service.Extensions
+namespace StarWarsDestiny.Common.Util.Extensions
 {
     internal class SubstituteParameterVisitor : ExpressionVisitor
     {

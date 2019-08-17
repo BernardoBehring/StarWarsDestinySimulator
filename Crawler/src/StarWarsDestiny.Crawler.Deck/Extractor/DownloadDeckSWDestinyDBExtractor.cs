@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using StarWarsDestiny.Crawler.Deck.Interfaces;
 using System;
-using StarWarsDestiny.Common.Util;
+using StarWarsDestiny.Common.Util.Extensions;
 using StarWarsDestiny.Service.Interfaces;
 
 namespace StarWarsDestiny.Crawler.Deck.Extractor

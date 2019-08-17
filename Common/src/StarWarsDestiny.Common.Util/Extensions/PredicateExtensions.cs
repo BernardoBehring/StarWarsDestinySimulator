@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace StarWarsDestiny.Common.Service.Extensions
+namespace StarWarsDestiny.Common.Util.Extensions
 {
     public static class PredicateExtensions
     {

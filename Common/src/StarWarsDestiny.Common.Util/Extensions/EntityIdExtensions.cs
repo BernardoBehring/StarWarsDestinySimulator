@@ -1,6 +1,6 @@
 ﻿using StarWarsDestiny.Common.Model;
 
-namespace StarWarsDestiny.Common.Util
+namespace StarWarsDestiny.Common.Util.Extensions
 {
     public static class EntityIdExtensions
     {
