@@ -38,9 +38,13 @@ namespace StarWarsDestiny.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<StarWarsDestinyContext>(options =>
-                options.UseSqlServer(
-                    "Data Source=localhost\\MSSQLSERVER01; DataBase=StarWarsDestiny;Integrated Security=True"));
+            //services.AddDbContext<StarWarsDestinyContext>(options => options.UseSqlServer("Data Source=localhost\\MSSQLSERVER01; DataBase=StarWarsDestiny;Integrated Security=True"));
+
+            services.AddEntityFrameworkNpgsql()
+                .AddDbContext<StarWarsDestinyContext>(
+                    options => options.UseNpgsql(
+                        Configuration.GetConnectionString("DB_CONNECTION")));
+
             InjectDependencies(services);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddScoped<IDependencyResolver>(x =>

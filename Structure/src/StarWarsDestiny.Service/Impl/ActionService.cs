@@ -167,7 +167,7 @@ namespace StarWarsDestiny.Service.Impl
             if (GetRolledDice(dice, dicePool, ref rolledDices))
                 return EnumMessage.DieNotInPool;
 
-            await _playerRoundService.DiscardToRerollAsync(gameDetails.Player, rolledDices);
+            //await _playerRoundService.DiscardToRerollAsync(gameDetails.Player, rolledDices);
 
             return EnumMessage.Success;
         }
